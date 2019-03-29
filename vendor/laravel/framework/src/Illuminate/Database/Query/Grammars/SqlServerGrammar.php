@@ -472,17 +472,6 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
-     * Wrap the given JSON boolean value.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    protected function wrapJsonBooleanValue($value)
-    {
-        return "'".$value."'";
-    }
-
-    /**
      * Wrap a table in keyword identifiers.
      *
      * @param  \Illuminate\Database\Query\Expression|string  $table

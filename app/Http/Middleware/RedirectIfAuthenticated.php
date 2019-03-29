@@ -18,6 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
+            //echo " Vous êtes bien authentifiés. BRAVO!!";
             return redirect('/home');
         }
 

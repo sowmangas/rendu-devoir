@@ -4,10 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class formation extends Model
+class Formation extends Model
 {
-    //
-    protected $table = 'personne';
-    
-    public $timestamps = false;
+    protected $fillable=['nom_formation'];
 }

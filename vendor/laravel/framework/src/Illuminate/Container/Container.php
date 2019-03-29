@@ -24,112 +24,112 @@ class Container implements ArrayAccess, ContainerContract
     /**
      * An array of the types that have been resolved.
      *
-     * @var bool[]
+     * @var array
      */
     protected $resolved = [];
 
     /**
      * The container's bindings.
      *
-     * @var array[]
+     * @var array
      */
     protected $bindings = [];
 
     /**
      * The container's method bindings.
      *
-     * @var \Closure[]
+     * @var array
      */
     protected $methodBindings = [];
 
     /**
      * The container's shared instances.
      *
-     * @var object[]
+     * @var array
      */
     protected $instances = [];
 
     /**
      * The registered type aliases.
      *
-     * @var string[]
+     * @var array
      */
     protected $aliases = [];
 
     /**
      * The registered aliases keyed by the abstract name.
      *
-     * @var array[]
+     * @var array
      */
     protected $abstractAliases = [];
 
     /**
      * The extension closures for services.
      *
-     * @var array[]
+     * @var array
      */
     protected $extenders = [];
 
     /**
      * All of the registered tags.
      *
-     * @var array[]
+     * @var array
      */
     protected $tags = [];
 
     /**
      * The stack of concretions currently being built.
      *
-     * @var array[]
+     * @var array
      */
     protected $buildStack = [];
 
     /**
      * The parameter override stack.
      *
-     * @var array[]
+     * @var array
      */
     protected $with = [];
 
     /**
      * The contextual binding map.
      *
-     * @var array[]
+     * @var array
      */
     public $contextual = [];
 
     /**
      * All of the registered rebound callbacks.
      *
-     * @var array[]
+     * @var array
      */
     protected $reboundCallbacks = [];
 
     /**
      * All of the global resolving callbacks.
      *
-     * @var \Closure[]
+     * @var array
      */
     protected $globalResolvingCallbacks = [];
 
     /**
      * All of the global after resolving callbacks.
      *
-     * @var \Closure[]
+     * @var array
      */
     protected $globalAfterResolvingCallbacks = [];
 
     /**
      * All of the resolving callbacks by class type.
      *
-     * @var array[]
+     * @var array
      */
     protected $resolvingCallbacks = [];
 
     /**
      * All of the after resolving callbacks by class type.
      *
-     * @var array[]
+     * @var array
      */
     protected $afterResolvingCallbacks = [];
 

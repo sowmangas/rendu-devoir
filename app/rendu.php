@@ -4,10 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class rendu extends Model
+class Rendu extends Model
 {
     //
-    protected $table = 'personne';
-    
-    public $timestamps = false;
 }

@@ -80,12 +80,10 @@ class Gate implements GateContract
      * @param  array  $policies
      * @param  array  $beforeCallbacks
      * @param  array  $afterCallbacks
-     * @param  callable  $guessPolicyNamesUsingCallback
      * @return void
      */
     public function __construct(Container $container, callable $userResolver, array $abilities = [],
-                                array $policies = [], array $beforeCallbacks = [], array $afterCallbacks = [],
-                                callable $guessPolicyNamesUsingCallback = null)
+                                array $policies = [], array $beforeCallbacks = [], array $afterCallbacks = [])
     {
         $this->policies = $policies;
         $this->container = $container;
@@ -93,7 +91,6 @@ class Gate implements GateContract
         $this->userResolver = $userResolver;
         $this->afterCallbacks = $afterCallbacks;
         $this->beforeCallbacks = $beforeCallbacks;
-        $this->guessPolicyNamesUsingCallback = $guessPolicyNamesUsingCallback;
     }
 
     /**
@@ -703,8 +700,7 @@ class Gate implements GateContract
 
         return new static(
             $this->container, $callback, $this->abilities,
-            $this->policies, $this->beforeCallbacks, $this->afterCallbacks,
-            $this->guessPolicyNamesUsingCallback
+            $this->policies, $this->beforeCallbacks, $this->afterCallbacks
         );
     }
 

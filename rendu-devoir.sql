@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  ven. 22 mars 2019 à 18:55
+-- Généré le :  sam. 16 mars 2019 à 14:54
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.11
 
@@ -29,18 +29,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `devoir` (
-  `code_devoir` int(11) NOT NULL,
-  `code_formation` char(25) NOT NULL,
-  `identifiant` int(11) NOT NULL,
-  `intitule` varchar(255) NOT NULL,
-  `evaluer` tinyint(1) NOT NULL,
-  `coefficient` int(11) NOT NULL,
-  `type_correction` varchar(255) NOT NULL,
-  `date_limit_depot` date NOT NULL,
-  `enonce` varchar(255) NOT NULL,
-  `corrige_type` varchar(255) DEFAULT NULL,
-  `periode` int(11) NOT NULL,
-  `nom_matiere` varchar(255) NOT NULL
+  `Code_devoir` char(100) NOT NULL,
+  `Code_formation` char(25) NOT NULL,
+  `Identifiant` varchar(255) NOT NULL,
+  `Intitule` varchar(255) NOT NULL,
+  `Evaluer` tinyint(1) NOT NULL,
+  `Coefficient` int(11) NOT NULL,
+  `Type_correction` varchar(255) NOT NULL,
+  `Date_limit_depot` date NOT NULL,
+  `Enonce` varchar(255) NOT NULL,
+  `Corrige_type` varchar(255) NOT NULL,
+  `Periode` int(11) NOT NULL,
+  `Nom_Matiere` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -50,41 +50,9 @@ CREATE TABLE `devoir` (
 --
 
 CREATE TABLE `formation` (
-  `code_formation` char(25) NOT NULL,
-  `nom_formation` varchar(255) NOT NULL
+  `Code_formation` char(25) NOT NULL,
+  `Nom_formation` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(3, '2014_10_12_000000_create_users_table', 1),
-(4, '2014_10_12_100000_create_password_resets_table', 1);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -93,14 +61,13 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `personne` (
-  `identifiant` int(11) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nom` varchar(256) NOT NULL,
-  `prenom` varchar(256) NOT NULL,
-  `adresse_mel` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `role` varchar(256) NOT NULL,
-  `titre` varchar(256) NOT NULL,
-  `code_formation` varchar(25) NOT NULL
+  `Identifiant` varchar(256) NOT NULL,
+  `Nom` varchar(256) NOT NULL,
+  `Prenom` varchar(256) NOT NULL,
+  `Adresse_mel` varchar(256) NOT NULL,
+  `Role` varchar(256) NOT NULL,
+  `Titre` varchar(256) NOT NULL,
+  `Code_formation` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -110,30 +77,25 @@ CREATE TABLE `personne` (
 --
 
 CREATE TABLE `rendu` (
-  `identifiant` int(11) NOT NULL,
-  `code_devoir` int(11) NOT NULL,
-  `rendu` varchar(255) NOT NULL,
-  `date_depot` date NOT NULL,
-  `note` decimal(10,0) NOT NULL,
-  `commentaire` text NOT NULL
+  `Identifiant` varchar(255) NOT NULL,
+  `code_devoir` varchar(255) NOT NULL,
+  `Rendu` varchar(255) NOT NULL,
+  `Date_depot` date NOT NULL,
+  `Note` decimal(10,0) NOT NULL,
+  `Commentaire` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Structure de la table `user`
 --
 
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `user` (
+  `indentifiant` varchar(255) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `actif` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Index pour les tables déchargées
@@ -143,77 +105,35 @@ CREATE TABLE `users` (
 -- Index pour la table `devoir`
 --
 ALTER TABLE `devoir`
-  ADD PRIMARY KEY (`code_devoir`),
-  ADD KEY `Code_formation` (`code_formation`),
-  ADD KEY `Identifiant` (`identifiant`);
+  ADD PRIMARY KEY (`Code_devoir`),
+  ADD KEY `Code_formation` (`Code_formation`),
+  ADD KEY `Identifiant` (`Identifiant`);
 
 --
 -- Index pour la table `formation`
 --
 ALTER TABLE `formation`
-  ADD PRIMARY KEY (`code_formation`);
-
---
--- Index pour la table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
+  ADD PRIMARY KEY (`Code_formation`);
 
 --
 -- Index pour la table `personne`
 --
 ALTER TABLE `personne`
-  ADD PRIMARY KEY (`identifiant`),
-  ADD KEY `Adresse_mel` (`adresse_mel`),
-  ADD KEY `fk1` (`code_formation`);
+  ADD PRIMARY KEY (`Identifiant`),
+  ADD KEY `fk1` (`Code_formation`);
 
 --
 -- Index pour la table `rendu`
 --
 ALTER TABLE `rendu`
-  ADD KEY `Identifiant` (`identifiant`),
+  ADD KEY `Identifiant` (`Identifiant`),
   ADD KEY `code_devoir` (`code_devoir`);
 
 --
--- Index pour la table `users`
+-- Index pour la table `user`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `devoir`
---
-ALTER TABLE `devoir`
-  MODIFY `code_devoir` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT pour la table `personne`
---
-ALTER TABLE `personne`
-  MODIFY `identifiant` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user`
+  ADD KEY `indentifiant` (`indentifiant`);
 
 --
 -- Contraintes pour les tables déchargées
@@ -223,21 +143,27 @@ ALTER TABLE `users`
 -- Contraintes pour la table `devoir`
 --
 ALTER TABLE `devoir`
-  ADD CONSTRAINT `fk1_personne_devoir` FOREIGN KEY (`identifiant`) REFERENCES `personne` (`identifiant`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk2_formation_devoir` FOREIGN KEY (`code_formation`) REFERENCES `formation` (`code_formation`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk1_pers_devoir` FOREIGN KEY (`Identifiant`) REFERENCES `personne` (`Identifiant`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk2_formation_devoir` FOREIGN KEY (`Code_formation`) REFERENCES `formation` (`Code_formation`) ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `personne`
 --
 ALTER TABLE `personne`
-  ADD CONSTRAINT `fk1` FOREIGN KEY (`code_formation`) REFERENCES `formation` (`code_formation`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk1` FOREIGN KEY (`Code_formation`) REFERENCES `formation` (`Code_formation`) ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `rendu`
 --
 ALTER TABLE `rendu`
-  ADD CONSTRAINT `fk1_devoir_rendu` FOREIGN KEY (`code_devoir`) REFERENCES `devoir` (`code_devoir`),
-  ADD CONSTRAINT `fk2_personne_rendu` FOREIGN KEY (`identifiant`) REFERENCES `personne` (`identifiant`);
+  ADD CONSTRAINT `fk1_personne_rendu` FOREIGN KEY (`Identifiant`) REFERENCES `personne` (`Identifiant`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk2_devoir_rendu` FOREIGN KEY (`code_devoir`) REFERENCES `devoir` (`Code_devoir`) ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `fk1_personne_user` FOREIGN KEY (`indentifiant`) REFERENCES `personne` (`Identifiant`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

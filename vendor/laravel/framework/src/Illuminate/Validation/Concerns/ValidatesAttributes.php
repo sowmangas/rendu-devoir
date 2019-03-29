@@ -626,10 +626,6 @@ trait ValidatesAttributes
      */
     public function validateEmail($attribute, $value)
     {
-        if (! is_string($value) && ! (is_object($value) && method_exists($value, '__toString'))) {
-            return false;
-        }
-
         return (new EmailValidator)->isValid($value, new RFCValidation);
     }
 

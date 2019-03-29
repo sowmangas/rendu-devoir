@@ -597,7 +597,7 @@ if (! function_exists('data_set')) {
 
 if (! function_exists('e')) {
     /**
-     * Encode HTML special characters in a string.
+     * Escape HTML special characters in a string.
      *
      * @param  \Illuminate\Contracts\Support\Htmlable|string  $value
      * @param  bool  $doubleEncode
@@ -662,7 +662,7 @@ if (! function_exists('env')) {
                         return;
                 }
 
-                if (preg_match('/\A([\'"])(.*)\1\z/', $value, $matches)) {
+                if (preg_match('/([\'"])(.*)\1/', $value, $matches)) {
                     return $matches[2];
                 }
 

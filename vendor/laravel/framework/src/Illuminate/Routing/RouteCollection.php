@@ -21,7 +21,7 @@ class RouteCollection implements Countable, IteratorAggregate
     protected $routes = [];
 
     /**
-     * A flattened array of all of the routes.
+     * An flattened array of all of the routes.
      *
      * @var array
      */

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Personne;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,8 +49,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nom' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'adresse_mel' => ['required', 'string', 'email', 'max:255', 'unique:personnes'],
+            'role' => ['required', 'string', 'max:255'],
+            'titre' => ['required', 'string', 'max:255', ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -63,9 +66,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        return Personne::create([
+            'nom'=> $data['nom'],
+            'prenom'=> $data['prenom'],
+            'adresse_mel'=> $data['adresse_mel'],
+            'role'=> $data['role'],
+            'titre'=> $data['titre'],
+            'formation_id'=> $data['formation_id'],
             'password' => Hash::make($data['password']),
         ]);
     }
