@@ -122,10 +122,7 @@ class ComposerStaticInit7db9a436b28b39ee637ccafdd10f3fbd
         array (
             'Cron\\' => 5,
             'Collective\\Html\\' => 16,
-<<<<<<< HEAD
-=======
             'Carbon\\' => 7,
->>>>>>> d3ca2aa273b597a1397f8af4c2b3306d2841c171
         ),
         'B' => 
         array (
@@ -329,13 +326,10 @@ class ComposerStaticInit7db9a436b28b39ee637ccafdd10f3fbd
         array (
             0 => __DIR__ . '/..' . '/laravelcollective/html/src',
         ),
-<<<<<<< HEAD
-=======
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
->>>>>>> d3ca2aa273b597a1397f8af4c2b3306d2841c171
         'BeyondCode\\DumpServer\\' => 
         array (
             0 => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src',
@@ -385,10 +379,7 @@ class ComposerStaticInit7db9a436b28b39ee637ccafdd10f3fbd
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Devoir' => __DIR__ . '/../..' . '/app/devoir.php',
-<<<<<<< HEAD
         'App\\Enum\\UserRole' => __DIR__ . '/../..' . '/app/Enum/UserRole.php',
-=======
->>>>>>> d3ca2aa273b597a1397f8af4c2b3306d2841c171
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Formation' => __DIR__ . '/../..' . '/app/formation.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -410,10 +401,6 @@ class ComposerStaticInit7db9a436b28b39ee637ccafdd10f3fbd
         'App\\Http\\Requests\\FormationRequest' => __DIR__ . '/../..' . '/app/Http/Requests/FormationRequest.php',
         'App\\Http\\Requests\\PersonneRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PersonneRequest.php',
         'App\\Http\\Requests\\RenduRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RenduRequest.php',
-<<<<<<< HEAD
-=======
-        'App\\Personne' => __DIR__ . '/../..' . '/app/Personne.php',
->>>>>>> d3ca2aa273b597a1397f8af4c2b3306d2841c171
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
