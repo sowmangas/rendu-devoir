@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\UserRole;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -18,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('adresse_mel');
-            $table->string('role');
-            $table->string('titre');
+            $table->enum('role', [UserRole::ETUDIANT, UserRole::PROF, UserRole::ADMIN]);
+            $table->string('titre')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('formation_id');
             $table->foreign('formation_id')->references('id')->on('formations');
