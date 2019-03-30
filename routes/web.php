@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 =======
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
 })->middleware('/auth');*/
 Route::get('/', function () {
     return view('auth.index');
 });
 
->>>>>>> d3ca2aa273b597a1397f8af4c2b3306d2841c171
+//>>>>>>> d3ca2aa273b597a1397f8af4c2b3306d2841c171
 Auth::routes();
 Route::view('/', 'welcome')->middleware('auth');
 Route::view('/auth','auth.index');
