@@ -8,7 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Devoir' => $baseDir . '/app/devoir.php',
+<<<<<<< HEAD
     'App\\Enum\\UserRole' => $baseDir . '/app/Enum/UserRole.php',
+=======
+>>>>>>> d3ca2aa273b597a1397f8af4c2b3306d2841c171
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Formation' => $baseDir . '/app/formation.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -30,6 +33,10 @@ return array(
     'App\\Http\\Requests\\FormationRequest' => $baseDir . '/app/Http/Requests/FormationRequest.php',
     'App\\Http\\Requests\\PersonneRequest' => $baseDir . '/app/Http/Requests/PersonneRequest.php',
     'App\\Http\\Requests\\RenduRequest' => $baseDir . '/app/Http/Requests/RenduRequest.php',
+<<<<<<< HEAD
+=======
+    'App\\Personne' => $baseDir . '/app/Personne.php',
+>>>>>>> d3ca2aa273b597a1397f8af4c2b3306d2841c171
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
@@ -1620,7 +1627,6 @@ return array(
     'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => $vendorDir . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
     'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => $vendorDir . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
     'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => $vendorDir . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
-    'JsonSerializable' => $vendorDir . '/nesbot/carbon/src/JsonSerializable.php',
     'Laravel\\Tinker\\ClassAliasAutoloader' => $vendorDir . '/laravel/tinker/src/ClassAliasAutoloader.php',
     'Laravel\\Tinker\\Console\\TinkerCommand' => $vendorDir . '/laravel/tinker/src/Console/TinkerCommand.php',
     'Laravel\\Tinker\\TinkerCaster' => $vendorDir . '/laravel/tinker/src/TinkerCaster.php',
