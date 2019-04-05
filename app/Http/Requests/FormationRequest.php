@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enum\UserRole;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class FormationRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class FormationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user()->role === UserRole::ADMIN;
     }
 
     /**
@@ -24,9 +26,7 @@ class FormationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            'Code_formation' => 'required|text|unique:formation',
-            'Nom_formation' => 'required|text|unique:formation'
+            'nom_formation' => 'required|string|unique:formations'
         ];
     }
 }

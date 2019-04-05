@@ -21,11 +21,10 @@ class CreateDevoirsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('intitule');
             $table->string('evaluer');
-            $table->string('coefficient');
             $table->string('type_correction');
             $table->string('date_limit_depot');
             $table->string('enonce');
-            $table->string('corrige_type');
+            $table->string('corrige_type')->nullable();
             $table->string('periode');
             $table->string('nom_matiere');
             $table->timestamps();

@@ -14,16 +14,20 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i < 10; $i++) { 
-        	User::create([
-        		'nom'=>"Diallo $i",
-				'prenom'=>"Hambaliou $i",
-				'adresse_mel'=>"hambaliou$i@gmail.com",
-				'role'=> $i < 2 ? UserRole::ADMIN : UserRole::ETUDIANT,
-				'titre'=>"Titre$i",
-                'password'=>bcrypt("qwerty"),
-                'formation_id'=> Formation::find($i)->id,
-        	]);
+        for ($i = 1; $i < 10; $i++) {
+            User::create([
+                'nom'          => "Diallo $i",
+                'prenom'       => "Hambaliou $i",
+                'adresse_mel'  => "hambaliou$i@gmail.com",
+                'role'         => $i <= 2
+                                    ? UserRole::ADMIN
+                                    : $i <= 4
+                                        ? UserRole::ETUDIANT
+                                        : UserRole::PROF,
+                'titre'        => "Titre$i",
+                'password'     => bcrypt("qwerty"),
+                'formation_id' => Formation::find($i)->id,
+            ]);
         }
     }
 }

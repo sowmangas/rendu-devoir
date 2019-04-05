@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Devoir;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $formationId = Auth::user()->formation_id;
+        $devoirs = Devoir::where('formation_id', $formationId)
+            ->where('user_id', Auth::id())
+            ->get();
+        return view('home', compact('devoirs'));
     }
 }

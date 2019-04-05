@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enum\UserRole;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class DevoirRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class DevoirRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user()->role === UserRole::PROF;
     }
 
     /**
@@ -24,14 +26,14 @@ class DevoirRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            'code_formation'   => 'required:devoir',
-            'identifiant'      => 'required:devoir',
-            'intitule'         => 'required:devoir',
-            'evaluer'          => 'required:devoir',
-            'date_limit_depot' => 'required:devoir',
-            'enonce'           => 'required:devoir',
-            'nom_matiere'      => 'required:devoir'
+            'formation_id'     => 'required',
+            'intitule'         => 'required',
+            'evaluer'          => 'required',
+            'date_limit_depot' => 'required',
+            'enonce'           => 'required',
+            'periode'          => 'required',
+            'nom_matiere'      => 'required|min:4',
+            'type_correction'  => 'required',
         ];
     }
 }

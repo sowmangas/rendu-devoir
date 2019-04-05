@@ -1,11 +1,6 @@
-@extends('layouts.base')
-
-@section('css')
-    @parent
-@stop
+@extends('layouts.app')
 
 @section('content')
-    
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-t-19 p-b-30">
@@ -21,7 +16,8 @@
                     </span>
 
                     <div class="wrap-input100 validate-input m-b-10" data-validate="Champ obligatoire" >
-                        <input class="input100{{ $errors->has('adresse_mel') ? ' alert-validate' : '' }}" type="text" name="adresse_mel" value="{{ old('adresse_mel') }}" placeholder="Nom d'utilisateur" autofocus>
+                        <label for="email" class="sr-only"></label>
+                        <input id="email" class="input100{{ $errors->has('adresse_mel') ? ' alert-validate' : '' }}" type="text" name="adresse_mel" value="{{ old('adresse_mel') }}" placeholder="Nom d'utilisateur" autofocus>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user"></i>
