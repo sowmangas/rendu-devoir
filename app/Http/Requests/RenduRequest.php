@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enum\UserRole;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class RenduRequest extends FormRequest
 {
@@ -13,7 +16,7 @@ class RenduRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user()->role === UserRole::ETUDIANT;
     }
 
     /**

@@ -19,10 +19,10 @@ class CreateRendusTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('devoir_id');
             $table->foreign('devoir_id')->references('id')->on('devoirs');
-            $table->enum('rendu',['Oui','Non'])->default('Non');
+            $table->string('rendu');
             $table->date('date_depot');
-            $table->string('note');
-            $table->text('commentaire');
+            $table->float('note') ->nullable();
+            $table->text('commentaire')->nullable();
             $table->timestamps();
         });
     }

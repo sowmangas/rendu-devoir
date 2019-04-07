@@ -27,8 +27,10 @@ Route::group(['prefix' => 'prof'], function () {
 });
 
 Route::group(['prefix' => 'etudiant'], function () {
-    Route::resource('rendu', 'Etudiant\RenduController')->names([
-        'create' => 'etudiant.rendu.create',
-        'store'  => 'etudiant.rendu.store'
+    Route::resource('rendus', 'Etudiant\RenduController')->names([
+        'create' => 'etudiant.rendus.create',
+        'store'  => 'etudiant.rendus.store',
+        'edit'   => 'etudiant.rendus.edit',
+        'update' => 'etudiant.rendus.update',
     ]);
 });

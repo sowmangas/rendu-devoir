@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('etudiant.rendu.create') }}">
+                    <a class="nav-link" href="{{ route('etudiant.rendus.create') }}">
                         {{ __('Création d\'un rendu de devoir') }}
                     </a>
                 </li>
