@@ -29,4 +29,11 @@ class FormationRequest extends FormRequest
             'nom_formation' => 'required|string|unique:formations'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'nom_formation.required' => 'Le nom de la formation est obligatoire',
+        ];
+    }
 }

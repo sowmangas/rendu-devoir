@@ -14,21 +14,25 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('FORUM GENERAL') }}</a>
                 </li>
+                @granted(\App\Enum\UserRole::ADMIN)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.formations.create') }}">
                         {{ __('Création d\'une formation') }}
                     </a>
                 </li>
+                @elsegranted(\App\Enum\UserRole::PROF)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('prof.devoirs.create') }}">
                         {{ __('Création d\'un devoir') }}
                     </a>
                 </li>
+                @elsegranted(\App\Enum\UserRole::ETUDIANT)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('etudiant.rendus.create') }}">
                         {{ __('Création d\'un rendu de devoir') }}
                     </a>
                 </li>
+                @endgranted
             </ul>
 
             <!-- Right Side Of Navbar -->
