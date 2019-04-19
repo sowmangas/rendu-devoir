@@ -34,5 +34,10 @@ Route::group(['middleware' => 'auth'], function () {
             'edit'   => 'etudiant.rendus.edit',
             'update' => 'etudiant.rendus.update',
         ]);
+
+        Route::resource('devoirs', 'Etudiant\DevoirController')->names([
+            'index' => 'etudiant.devoirs.index',
+            'show'   => 'etudiant.devoirs.show',
+        ]);
     });
 });

@@ -6,11 +6,11 @@
     <div class="row">
         <div class="offset-2 col-md-8">
             <form action="{{ route('prof.devoirs.store') }}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                @csrf
 
                 <div class="form-group">
                     <label for="formation_id" class="sr-only">Formation</label>
-                    <select type="text" name="formation_id" id="formation_id" class="form-control">
+                    <select type="text" name="formation_id" id="formation_id" class="form-control ">
                         <option disabled selected>Selectionner une formation</option>
                         @foreach($formations as $formation)
                             <option value="{{ old('formation_id') ?: $formation->id }}">

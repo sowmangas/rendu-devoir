@@ -29,7 +29,7 @@
                 @elsegranted(\App\Enum\UserRole::ETUDIANT)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('etudiant.rendus.create') }}">
-                        {{ __('Création d\'un rendu de devoir') }}
+                        {{ __('Rendre un devoir') }}
                     </a>
                 </li>
                 @endgranted
@@ -51,7 +51,7 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->nom }} <span class="caret"></span>
+                            {{ Auth::user()->nom }} {{ Auth::user()->role }} <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Etudiant;
 
 use App\Devoir;
+use App\Http\Requests\RenduFormRequest;
 use App\Rendu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -35,16 +36,17 @@ class RenduController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param RenduFormRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(RenduFormRequest $request)
     {
-        $path = $request->file('rendu')->store("/public/files/" . Auth::id());
+        $path = $request->file('rendu')->store(Auth::id());
+
         $data = array_merge(
             $request->only('devoir_id'), ['user_id' => Auth::id(), 'rendu' => $path, 'date_depot' => now()]
         );
-        //dd($data);
+
         Rendu::create($data);
 
         return redirect()->back()->with([
@@ -79,7 +81,7 @@ class RenduController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
      * @return Response
      */
