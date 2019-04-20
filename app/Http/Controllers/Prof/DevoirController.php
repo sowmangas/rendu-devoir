@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Prof;
 use App\Devoir;
 use App\Formation;
 use App\Http\Requests\DevoirRequest;
+use App\Rendu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
@@ -47,7 +48,7 @@ class DevoirController extends Controller
                 'type_correction', 'date_limit_depot', 'enonce', 'periode',
                 'nom_matiere'), [ 'enonce' => $path, 'user_id' => Auth::id() ]
         );
-//        dd($data);
+
         Devoir::create($data);
 
         return redirect()->back()->with([
@@ -59,12 +60,26 @@ class DevoirController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $id
      * @return Response
      */
     public function show($id)
     {
-        //
+        $devoir = Devoir::whereId($id)
+            ->whereUserId(Auth::id())
+            ->with('rendus')
+            ->first();
+
+        return view('prof.devoir.show', compact('devoir'));
+    }
+
+    public function devoirByMatiere($name)
+    {
+        $devoirs = Devoir::whereNomMatiere($name)
+            ->whereUserId(Auth::id())
+            ->get();
+
+        return view('prof.devoir.matiere', compact('devoirs'));
     }
 
     /**
@@ -87,7 +102,25 @@ class DevoirController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        dd($request->all(), $request->file('corrige_type'));
+        $path = str_replace('public','storage',
+            $request->file('corrige_type')->store(config('uploads.image'))
+        );
+
+        Devoir::whereId($id)
+            ->update(['corrige_type' => $path]);
+
+        Rendu::whereDevoirId($id)
+            ->whereUserId($request->get('etudiant_id'))
+            ->update([
+                'note' => $request->get('note'),
+                'commentaire' => $request->get('commentaire')
+            ]);
+
+        return redirect()->back()->with([
+            'type'    => 'success',
+            'message' => 'Correction effectuée avec succèss'
+        ]);
     }
 
     /**

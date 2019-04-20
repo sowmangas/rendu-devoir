@@ -43,13 +43,13 @@ class DevoirController extends Controller
      */
     public function store(Request $request)
     {
-        $path = $request->file('enonce')->store("/public/files/".Auth::id());
+        $path = $request->file('enonce')->store("/public/" . Auth::id());
         $data = array_merge(
             $request->only('formation_id', 'intitule', 'evaluer',
                 'type_correction', 'date_limit_depot', 'enonce', 'periode',
                 'nom_matiere'), [ 'enonce' => $path, 'user_id' => Auth::id() ]
         );
-//        dd($data);
+
         Devoir::create($data);
 
         return redirect()->back()->with([
@@ -71,7 +71,7 @@ class DevoirController extends Controller
             ->get()
             ->map(function ($devoir) {
                 foreach ($devoir->etudiants as $etudiant) {
-                    $devoir->rendu = $etudiant->pivot->rendu;
+                    $devoir->rendu = str_replace('public', 'storage', $etudiant->pivot->rendu);
                     $devoir->date_depot = $etudiant->pivot->date_depot;
                     $devoir->note = $etudiant->pivot->note;
                     $devoir->commentaire = $etudiant->pivot->commentaire;

@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Devoir extends Model
 {
     protected $fillable = [
-        'formation_id', 'user_id', 'intitule', 'evaluer', 'coefficient', 'type_correction', 'date_limit_depot', 'enonce',
-        'corrige_type', 'periode', 'nom_matiere'
+        'formation_id', 'user_id', 'intitule', 'evaluer', 'coefficient', 'type_correction', 'date_limit_depot', 'enonce', 'corrige_type', 'periode', 'nom_matiere'
+    ];
+
+    protected $dates = ['date_limit_depot'];
+
+
+    protected $casts = [
+        'type_correction' => 'boolean',
     ];
 
     public function formation()
@@ -26,5 +32,7 @@ class Devoir extends Model
         return $this->belongsTo(User::class);
     }
 
-//    public function rendu
+    public function rendus() {
+        return $this->hasMany(Rendu::class);
+    }
 }

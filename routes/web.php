@@ -23,9 +23,13 @@ Route::group(['middleware' => 'auth'], function () {
             'create' => 'prof.devoirs.create',
             'store'  => 'prof.devoirs.store',
             'edit'   => 'prof.devoirs.edit',
+            'show'   => 'prof.devoirs.show',
             'update' => 'prof.devoirs.update',
         ]);
     });
+
+    Route::get('devoirsBy/matiere/{name}', 'Prof\DevoirController@devoirByMatiere')
+    ->name('prof.devoirs.matiere');
 
     Route::group(['prefix' => 'etudiant', 'middleware' => 'etudiant'], function () {
         Route::resource('rendus', 'Etudiant\RenduController')->names([

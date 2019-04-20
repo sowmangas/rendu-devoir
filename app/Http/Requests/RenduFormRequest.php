@@ -26,7 +26,7 @@ class RenduFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'rendu' => 'required|file|mimes:jpeg,png',
+            'rendu' => 'required|file|mimes:pdf',
             'devoir_id' => 'required',
         ];
     }

@@ -34,7 +34,7 @@ class HomeController extends Controller
         if (isStudent()) {
 
             //$query1 = DB::table('users')
-//                ->fromSub($query1, "users1")
+                //->fromSub($query1, "users1")
               //  ->join('devoirs', 'users.formation_id', '=', 'devoirs.formation_id')
                 /*->where('users.id', '=', Auth::id())
                 ->select(DB::raw('nom_matiere, 0 as nombre_rendu, count(*) as nombre_devoir'))
@@ -86,11 +86,13 @@ class HomeController extends Controller
 
         } elseif (isProf()) {
 
-            $formationId = $auth->formation_id;
-            $devoirs = Devoir::where('formation_id', $formationId)
-                ->where('user_id', Auth::id())
+            $whereUserId = Devoir::whereUserId(Auth::id());
+            $devoirs = $whereUserId
+                ->select('nom_matiere', DB::raw("count('nom_matiere') as nombre_devoir"))
+                ->groupBy('nom_matiere')
                 ->get();
-            return view('home', compact('devoirs'));
+
+            return view('prof.home.index', compact('devoirs'));
 
         } elseif (isAdmin()) {
 

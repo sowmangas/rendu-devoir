@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Etudiant;
+namespace App\Http\Controllers\Prof;
 
 use App\Devoir;
 use App\Http\Requests\RenduFormRequest;
@@ -57,6 +57,7 @@ class RenduController extends Controller
             'type'    => 'success',
             'message' => 'Enregistrement Rendu reussi'
         ]);
+
     }
 
     /**

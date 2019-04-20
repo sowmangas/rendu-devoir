@@ -32,10 +32,9 @@
                         </td>
                         <td>{{ $devoir->corrige_type }}</td>
                         <td>
-                            {{ $devoir->rendu }}
                             @if ($devoir->rendu)
-                                <a href="{{ asset('storage/'.$devoir->rendu) }}" download class="btn btn-link">
-                                    Télécharger <i class="fa fa-download"></i>
+                                <a href="{{ asset($devoir->rendu) }}" download class="btn btn-link" title="Téléchargé le rendu">
+                                    <i class="fa fa-download"></i>
                                 </a>
                             @else
                             <form action="{{ route('etudiant.rendus.store') }}" method="post" enctype="multipart/form-data">
