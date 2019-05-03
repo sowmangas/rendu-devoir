@@ -6,6 +6,7 @@ use App\Devoir;
 use App\Formation;
 use App\Http\Requests\DevoirRequest;
 use App\Rendu;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
@@ -65,10 +66,9 @@ class DevoirController extends Controller
      */
     public function show($id)
     {
-        $devoir = Devoir::whereId($id)
-            ->whereUserId(Auth::id())
+        $devoir = Devoir::whereUserId(Auth::id())
             ->with('rendus')
-            ->first();
+            ->findOrFail($id);
 
         return view('prof.devoir.show', compact('devoir'));
     }
@@ -120,6 +120,20 @@ class DevoirController extends Controller
         return redirect()->back()->with([
             'type'    => 'success',
             'message' => 'Correction effectuée avec succèss'
+        ]);
+    }
+
+    /**
+     * Permert de rendre un devoir visible
+     *
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function putVisible ($id) {
+        Devoir::findOrFail($id)->update(['visible_corrige_type' => true]);
+        return redirect()->back()->with([
+            'type'    => 'success',
+            'message' => 'Succèss, corrigé type visible pour tous.'
         ]);
     }
 

@@ -14,6 +14,8 @@
                     <th class="text-center">Enoncé</th>
                     <th class="text-center">Corrigé type</th>
                     <th class="text-center">Rendu</th>
+                    <th class="text-center">Commentaire</th>
+                    <th class="text-center">Note</th>
                 </tr>
                 </thead>
 
@@ -22,15 +24,19 @@
                     <tr class="text-center">
                         <td>{{ $devoir->intitule }}</td>
                         <td>{{ $devoir->periode }}</td>
-                        <td>{{ $devoir->evalue }}</td>
+                        <td>{{ $devoir->evaluer }}</td>
                         <td>{{ $devoir->type_correction }}</td>
                         <td>{{ $devoir->date_limit_depot }}</td>
                         <td>
                             <a href="{{ $devoir->enonce }}" download="{{ $devoir->enonce }}" class="btn btn-link">
-                                Télécharger <i class="fa fa-download"></i>
+                                <i class="fa fa-download"></i>
                             </a>
                         </td>
-                        <td>{{ $devoir->corrige_type }}</td>
+                        <td>
+                            <a href="{{ $devoir->corrige_type }}" download class="btn btn-link" title="Télécharger le corrigé" {{ !$devoir->visible_corrige_type ? 'hidden' : '' }}>
+                                <i class="fa fa-download"></i>
+                            </a>
+                        </td>
                         <td>
                             @if ($devoir->rendu)
                                 <a href="{{ asset($devoir->rendu) }}" download class="btn btn-link" title="Téléchargé le rendu">
@@ -57,6 +63,8 @@
                             </form>
                             @endif
                         </td>
+                        <td>{{ $devoir->commentaire }}</td>
+                        <td>{{ $devoir->note }}</td>
                     </tr>
                 @empty
                 @endforelse

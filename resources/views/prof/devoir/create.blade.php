@@ -38,6 +38,11 @@
                     </label>
                 </div>
 
+                <div class="form-group" id="corrige_input" style="display: none;">
+                    <label for="corrige_type">Selectionner le corrigé type <i>La taille maximal du fichier est de 2MB</i></label>
+                    <input type="file" name="corrige_type" id="corrige_type" class="form-control form-control-sm" value="{{ old('corrige_type') }}">
+                </div>
+
                 <div class="form-group">
                     <label for="date_limit_depot">Date limite</label>
                     <input type="date" name="date_limit_depot" id="date_limit_depot" class="form-control"
@@ -70,4 +75,14 @@
             </form>
         </div>
     </div>
+@stop
+
+@section('js')
+    @parent
+
+    <script>
+        $("#type_correction").click(function(){
+            $("#corrige_input").toggle();
+        });
+    </script>
 @stop

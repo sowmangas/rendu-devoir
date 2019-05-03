@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
             'show'   => 'prof.devoirs.show',
             'update' => 'prof.devoirs.update',
         ]);
+        Route::put('devoirs/{id}/putVisible', 'Prof\DevoirController@putVisible')->name('prof.devoirs.putVisible');
     });
 
     Route::get('devoirsBy/matiere/{name}', 'Prof\DevoirController@devoirByMatiere')
