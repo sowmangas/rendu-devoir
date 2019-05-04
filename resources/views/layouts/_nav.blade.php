@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/home') }}">
-            {{ env('APP_NAME') }}
-        </a>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url('/home') }}">{{ env('APP_NAME') }}</a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -12,15 +11,9 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('FORUM GENERAL') }}</a>
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Forum') }}</a>
                 </li>
-                @granted(\App\Enum\UserRole::ADMIN)
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.formations.create') }}">
-                        {{ __('Création d\'une formation') }}
-                    </a>
-                </li>
-                @elsegranted(\App\Enum\UserRole::PROF)
+                @granted(\App\Enum\UserRole::PROF)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('prof.devoirs.create') }}">
                         {{ __('Création d\'un devoir') }}
@@ -34,8 +27,8 @@
                 </li>
                 @endgranted
             </ul>
-
             <!-- Right Side Of Navbar -->
+
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest

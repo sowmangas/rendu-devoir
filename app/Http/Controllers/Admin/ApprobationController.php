@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Etudiant;
+namespace App\Http\Controllers\Admin;
 
-use App\Devoir;
-use App\Http\Requests\RenduFormRequestEtudiant;
-use App\Rendu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 
-class RenduController extends Controller
+class ApprobationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,40 +25,24 @@ class RenduController extends Controller
      */
     public function create()
     {
-        $devoirs = Devoir::get();
-        return view('etudiant.rendu.create', compact('devoirs'));
+        return view('admin.approbation.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param RenduFormRequestEtudiant $request
+     * @param  \Illuminate\Http\Request  $request
      * @return Response
      */
-    public function store(RenduFormRequestEtudiant $request)
+    public function store(Request $request)
     {
-        $path = str_replace(
-            'public','storage',
-            $request->file('rendu')->store(config('uploads.image'))
-        );
-
-        $data = array_merge(
-            $request->only('devoir_id'),
-            ['user_id' => Auth::id(), 'rendu' => $path, 'date_depot' => now()]
-        );
-
-        Rendu::create($data);
-
-        return redirect()->back()->with([
-            'type'    => 'success',
-            'message' => 'Enregistrement Rendu reussi'
-        ]);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -73,7 +53,7 @@ class RenduController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -84,8 +64,8 @@ class RenduController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -96,7 +76,7 @@ class RenduController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

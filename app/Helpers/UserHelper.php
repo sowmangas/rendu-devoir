@@ -2,6 +2,7 @@
 
 use App\Enum\UserRole;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 if (!function_exists('isStudent')) {
     function isStudent()
@@ -21,5 +22,13 @@ if (!function_exists('isAdmin')) {
     function isAdmin()
     {
         return Auth::check() && Auth::user()->role === UserRole::ADMIN;
+    }
+}
+
+
+if (!function_exists('setActiveRoot')) {
+    function setActiveRoot($route)
+    {
+        return Route::is($route) ? 'active' : '';
     }
 }

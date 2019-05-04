@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->enum('role', [UserRole::ETUDIANT, UserRole::PROF, UserRole::ADMIN]);
             $table->string('titre')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('formation_id');
+            $table->unsignedBigInteger('formation_id')->nullable();
             $table->foreign('formation_id')->references('id')->on('formations');
             $table->timestamps();
         });

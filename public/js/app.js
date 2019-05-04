@@ -1913,8 +1913,6 @@ __webpack_require__.r(__webpack_exports__);
         "password_confirmation": this.password_confirmation // "_token": document.head.querySelector('meta[name="csrf-token"]').content,
 
       };
-      console.log(options); // debugger
-
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(this.url, options).then(function (response) {
         window.location.href = '/home';
       }, function (error) {
@@ -1933,6 +1931,70 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getFormation();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UpdateNoteComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UpdateNoteComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  props: {
+    url: String,
+    csrf: String,
+    userid: Number,
+    renduid: Number,
+    oldnote: Number,
+    oldcommentaire: String
+  },
+  methods: {
+    askUpdate: function askUpdate() {
+      var note = prompt('Saisir la nouvelle note');
+      var commentaire = prompt('Saisir le nouveau commentaire');
+      var justif = prompt('Saisir un justificatif');
+      if (this.empty(note) || this.empty(commentaire) || this.empty(justif)) return;
+      var data = {
+        'note': note,
+        'commentaire': commentaire,
+        '_csrf': this.csrf,
+        'user_id': this.userid,
+        'rendu_id': this.renduid,
+        'justif': justif,
+        'old_note': this.oldnote,
+        'old_commentaire': this.oldcommentaire
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(this.url, data).then(function (response) {
+        return alert(response.data);
+      }, function (error) {
+        return console.error(error);
+      });
+    },
+    empty: function empty(stg) {
+      return stg === '';
+    },
+    notEmpty: function notEmpty(stg) {
+      return !this.empty(stg);
+    }
+  },
+  mounted: function mounted() {
+    console.log(this.url);
   }
 });
 
@@ -37439,6 +37501,44 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UpdateNoteComponent.vue?vue&type=template&id=53acbfc7&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UpdateNoteComponent.vue?vue&type=template&id=53acbfc7& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "a",
+    {
+      staticClass: "btn btn-outline-danger btn-sm",
+      attrs: { href: "" },
+      on: {
+        click: function($event) {
+          $event.preventDefault()
+          $event.stopPropagation()
+          return _vm.askUpdate($event)
+        }
+      }
+    },
+    [_vm._v("Modifier")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -49589,6 +49689,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
 Vue.component('register-component', __webpack_require__(/*! ./components/RegisterComponent.vue */ "./resources/js/components/RegisterComponent.vue").default);
+Vue.component('update-note-component', __webpack_require__(/*! ./components/UpdateNoteComponent.vue */ "./resources/js/components/UpdateNoteComponent.vue").default);
 var app = new Vue({
   el: '#app'
 });
@@ -49791,6 +49892,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/UpdateNoteComponent.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/UpdateNoteComponent.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UpdateNoteComponent_vue_vue_type_template_id_53acbfc7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateNoteComponent.vue?vue&type=template&id=53acbfc7& */ "./resources/js/components/UpdateNoteComponent.vue?vue&type=template&id=53acbfc7&");
+/* harmony import */ var _UpdateNoteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateNoteComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/UpdateNoteComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UpdateNoteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UpdateNoteComponent_vue_vue_type_template_id_53acbfc7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UpdateNoteComponent_vue_vue_type_template_id_53acbfc7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/UpdateNoteComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/UpdateNoteComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/UpdateNoteComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateNoteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateNoteComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UpdateNoteComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateNoteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/UpdateNoteComponent.vue?vue&type=template&id=53acbfc7&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/UpdateNoteComponent.vue?vue&type=template&id=53acbfc7& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateNoteComponent_vue_vue_type_template_id_53acbfc7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateNoteComponent.vue?vue&type=template&id=53acbfc7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UpdateNoteComponent.vue?vue&type=template&id=53acbfc7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateNoteComponent_vue_vue_type_template_id_53acbfc7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateNoteComponent_vue_vue_type_template_id_53acbfc7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -49809,8 +49979,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\diallo110461\Documents\GitHub\rendu-devoir\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\diallo110461\Documents\GitHub\rendu-devoir\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Spectre360\Documents\Cours\rendu-devoir\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Spectre360\Documents\Cours\rendu-devoir\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

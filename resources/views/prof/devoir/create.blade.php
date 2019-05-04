@@ -1,10 +1,9 @@
-@extends('layouts.base')
+@extends('layouts.base', ['title' => 'Création devoir'])
 
 @section('content')
-    <h1>Formulaire de creation d'un devoir</h1>
-
     <div class="row">
         <div class="offset-2 col-md-8">
+            <h1>Formulaire de creation d'un devoir</h1>
             <form action="{{ route('prof.devoirs.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
@@ -34,13 +33,16 @@
 
                 <div class="form-group">
                     <label for="type_correction" class="form-check-inline">
-                        <input type="checkbox" name="type_correction" id="type_correction" class="form-control"> Type de correction ?
+                        <input type="checkbox" name="type_correction" id="type_correction" class="form-control"> Type de
+                        correction ?
                     </label>
                 </div>
 
                 <div class="form-group" id="corrige_input" style="display: none;">
-                    <label for="corrige_type">Selectionner le corrigé type <i>La taille maximal du fichier est de 2MB</i></label>
-                    <input type="file" name="corrige_type" id="corrige_type" class="form-control form-control-sm" value="{{ old('corrige_type') }}">
+                    <label for="corrige_type">Selectionner le corrigé type <i>La taille maximal du fichier est de
+                            2MB</i></label>
+                    <input type="file" name="corrige_type" id="corrige_type" class="form-control form-control-sm"
+                           value="{{ old('corrige_type') }}">
                 </div>
 
                 <div class="form-group">
@@ -66,7 +68,7 @@
                 <div class="form-group">
                     <label for="nom_matiere" class="sr-only">Nom de la matiere</label>
                     <input type="text" name="nom_matiere" id="nom_matiere" class="form-control"
-                           placeholder="Saisissez le nom de la matière" value="{{ old('nom_matiere') }}" >
+                           placeholder="Saisissez le nom de la matière" value="{{ old('nom_matiere') }}">
                 </div>
 
                 <div class="form-group">
@@ -77,12 +79,14 @@
     </div>
 @stop
 
+@section('vue')@stop
+
 @section('js')
     @parent
 
     <script>
-        $("#type_correction").click(function(){
-            $("#corrige_input").toggle();
-        });
+        $('#type_correction').click(function () {
+            $('#corrige_input').toggle()
+        })
     </script>
 @stop

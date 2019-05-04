@@ -1,7 +1,7 @@
 @extends('admin.home.index')
 
 @section('homeContent')
-    <h1>Formulaire de creation de formation</h1>
+    <h1>Formulaire de création d'une approbation</h1>
     <form action="{{ route('admin.formations.store') }}" method="post">
         {{ csrf_field() }}
 

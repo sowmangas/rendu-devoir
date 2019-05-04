@@ -21,7 +21,6 @@ class UserTableSeeder extends Seeder
             'role'         => UserRole::ADMIN,
             'titre'        => "Titre",
             'password'     => bcrypt("qwerty"),
-            'formation_id' => Formation::findOrFail(1)->id,
         ]);
 
         for ($i = 1; $i < 10; $i++) {
@@ -32,7 +31,7 @@ class UserTableSeeder extends Seeder
                 'role'         => $i % 2 == 0 ? UserRole::ETUDIANT : UserRole::PROF,
                 'titre'        => "Titre$i",
                 'password'     => bcrypt("qwerty"),
-                'formation_id' => Formation::find($i)->id,
+                'formation_id' => UserRole::ETUDIANT ? Formation::find($i)->id : null,
             ]);
         }
     }

@@ -116,8 +116,6 @@
                     // "_token": document.head.querySelector('meta[name="csrf-token"]').content,
                 }
 
-                console.log(options)
-                // debugger
                 axios.post(this.url, options).then(response => {
                     window.location.href = '/home'
                 }, error => {

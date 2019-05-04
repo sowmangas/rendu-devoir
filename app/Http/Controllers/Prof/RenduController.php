@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Prof;
 
 use App\Devoir;
-use App\Http\Requests\RenduFormRequest;
+use App\Http\Requests\RenduFormRequestEtudiant;
+use App\Http\Requests\RenduFormRequestProf;
 use App\Rendu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,13 +37,13 @@ class RenduController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param RenduFormRequest $request
+     * @param RenduFormRequestEtudiant $request
      * @return Response
      */
-    public function store(RenduFormRequest $request)
+    public function store(RenduFormRequestEtudiant $request)
     {
         $path = str_replace(
-            'public','storage',
+            'public', 'storage',
             $request->file('rendu')->store(config('uploads.image'))
         );
 
@@ -85,13 +86,30 @@ class RenduController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param RenduFormRequestProf $request
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(RenduFormRequestProf $request, $id)
     {
-        //
+        $whereDevoirId = Rendu::whereDevoirId($id);
+
+        $first = $whereDevoirId->first();
+
+        if ($first != null && assert($first->note))
+            return abort(401, 'action no authority');
+
+        $whereDevoirId
+            ->whereUserId($request->get('etudiant_id'))
+            ->update([
+                'note'        => $request->get('note'),
+                'commentaire' => $request->get('commentaire')
+            ]);
+
+        return redirect()->back()->with([
+            'type'    => 'success',
+            'message' => 'Correction effectuée avec succèss'
+        ]);
     }
 
     /**

@@ -16,35 +16,40 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($devoirs as $devoir)
-                        <tr>
+                @foreach ($devoirs as $devoir)
+                    <tr>
+                        <td class="text-center">
+                            <a href="{{ route('prof.devoirs.show', $devoir) }}">
+                                {{ $devoir->intitule }}
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ route('prof.devoirs.show', $devoir) }}">
+                                {{ $devoir->periode }}
+                            </a>
+                        </td>
+                        @if ($devoir->type_correction)
                             <td class="text-center">
-                                <a href="{{ route('prof.devoirs.show', $devoir) }}">
-                                    {{ $devoir->intitule }}
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <a href="{{ route('prof.devoirs.show', $devoir) }}">
-                                    {{ $devoir->periode }}
-                                </a>
-                            </td>
-                            @if ($devoir->type_correction)
-                                <td class="text-center">{{ $devoir->corrige_type }}</td>
-                            @endif
-                            <td class="text-center">
-                                <a href="{{ route('prof.devoirs.show', $devoir) }}">
-                                    {{ $devoir->nom_matiere }}
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <a href="{{ asset($devoir->enonce) }}" download class="btn btn-link"
-                                   title="Téléchargé l'énonce">
+                                <a href="{{ $devoir->corrige_type }}" download class="btn btn-link"
+                                   title="Téléchargé le corrigé type">
                                     <i class="fa fa-download"></i>
                                 </a>
                             </td>
-                            <td class="text-center">{{ $devoir->date_limit_depot->format('d/m/Y') }}</td>
-                        </tr>
-                    @endforeach
+                        @endif
+                        <td class="text-center">
+                            <a href="{{ route('prof.devoirs.show', $devoir) }}">
+                                {{ $devoir->nom_matiere }}
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ asset($devoir->enonce) }}" download class="btn btn-link"
+                               title="Téléchargé l'énonce">
+                                <i class="fa fa-download"></i>
+                            </a>
+                        </td>
+                        <td class="text-center">{{ $devoir->date_limit_depot->format('d/m/Y') }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

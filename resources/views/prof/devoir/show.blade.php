@@ -11,9 +11,9 @@
                 </form>
             @endif
 
-            <form action="{{ route('prof.devoirs.update', $devoir) }}" method="post"
-                  enctype="multipart/form-data"
-                  onsubmit="return confirm('Vous êtes sur le point de corriger un devoir, l\'opération est irreversible. Êtes-vous sûr ?')">
+            <form action="{{ route('prof.rendus.update', $devoir) }}" method="post"
+                  onsubmit="return confirm('Vous êtes sur le point de corriger un devoir, \n l\'opération est irreversible.\n Êtes-vous sûr ?')">
+                @csrf {{ method_field('put') }}
 
                 <table class="table table-sm table-hover">
                     <thead>
@@ -24,16 +24,13 @@
                         <th class="text-center">Commentaires</th>
                         <th class="text-center">Rendu</th>
                         <th class="text-center">Date de dépôt</th>
-                        <th class="text-center">Option</th>
+                        <th class="text-center" colspan="2">Options</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    @csrf
-                    {{ method_field('put') }}
-
                     @foreach ($devoir->rendus as $rendu)
-                        <tr>
+                        <tr class="text-center">
                             <td>{{ $devoir->intitule }}</td>
                             <td>{{ $devoir->periode }}</td>
                             <td>
@@ -62,6 +59,18 @@
                                     {{ ($rendu->note && $rendu->commentaire) ? 'disabled' : '' }}>
                                     Corriger
                                 </button>
+                            </td>
+                            <td class="text-center">
+                                @if ($rendu->note)
+                                    <update-note-component
+                                        url="{{ route('prof.modification.note') }}"
+                                        csrf="{{ csrf_token() }}"
+                                        :userid="{{ Auth::id() }}"
+                                        :renduid="{{ $rendu->id }}"
+                                        :oldnote="{{ $rendu->note }}"
+                                        oldcommentaire="{{ $rendu->commentaire }}">
+                                    </update-note-component>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

@@ -96,31 +96,32 @@ class DevoirController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param DevoirRequest $request
+     * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(DevoirRequest $request, $id)
     {
+        dd($id);
 //        dd($request->all(), $request->file('corrige_type'));
-        $path = str_replace('public','storage',
-            $request->file('corrige_type')->store(config('uploads.image'))
-        );
-
-        Devoir::whereId($id)
-            ->update(['corrige_type' => $path]);
-
-        Rendu::whereDevoirId($id)
-            ->whereUserId($request->get('etudiant_id'))
-            ->update([
-                'note' => $request->get('note'),
-                'commentaire' => $request->get('commentaire')
-            ]);
-
-        return redirect()->back()->with([
-            'type'    => 'success',
-            'message' => 'Correction effectuée avec succèss'
-        ]);
+//
+//        $path = str_replace('public', 'storage',
+//            $request->file('corrige_type')->store(config('uploads.image'))
+//        );
+//
+//        Devoir::whereId($id)->update(['corrige_type' => $path]);
+//
+//        Rendu::whereDevoirId($id)
+//            ->whereUserId($request->get('etudiant_id'))
+//            ->update([
+//                'note' => $request->get('note'),
+//                'commentaire' => $request->get('commentaire')
+//            ]);
+//
+//        return redirect()->back()->with([
+//            'type'    => 'success',
+//            'message' => 'Correction effectuée avec succèss'
+//        ]);
     }
 
     /**

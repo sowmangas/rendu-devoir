@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Devoir;
-use App\Rendu;
-use Illuminate\Http\Request;
-use App\User;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use MongoDB\Driver\Query;
-use Symfony\Component\Console\Helper\Table;
 
 class HomeController extends Controller
 {
@@ -26,7 +22,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
@@ -96,11 +92,7 @@ class HomeController extends Controller
 
         } elseif (isAdmin()) {
 
-            $formationId = $auth->formation_id;
-            $devoirs = Devoir::where('formation_id', $formationId)
-                ->where('user_id', Auth::id())
-                ->get();
-            return view('home', compact('devoirs'));
+            return view('admin.home.index');
 
         } else {
             return abort(404);
