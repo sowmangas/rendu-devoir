@@ -14,7 +14,7 @@ class AddVisibleCorrigeType extends Migration
     public function up()
     {
         Schema::table('devoirs', function (Blueprint $table) {
-            $table->boolean('visible_corrige_type');
+            $table->boolean('visible_corrige_type')->default(false);
         });
     }
 

@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('nom');
             $table->string('prenom');
-            $table->string('adresse_mel');
+            $table->string('adresse_mel')->unique();
             $table->enum('role', [UserRole::ETUDIANT, UserRole::PROF, UserRole::ADMIN]);
             $table->string('titre')->nullable();
             $table->string('password');

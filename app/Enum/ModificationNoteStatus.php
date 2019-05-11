@@ -4,6 +4,7 @@ namespace App\Enum;
 
 abstract class ModificationNoteStatus
 {
-    const Ok = "ok";
+    const OK = "ok";
     const PENDING = "pending";
+    const REJECTED = "rejected";
 }

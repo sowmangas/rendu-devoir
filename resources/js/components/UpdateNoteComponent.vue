@@ -15,7 +15,8 @@
             userid: Number,
             renduid: Number,
             oldnote: Number,
-            oldcommentaire: String
+            oldcommentaire: String,
+            etudiantid: Number,
         },
         methods: {
             askUpdate () {
@@ -33,7 +34,8 @@
                     'rendu_id': this.renduid,
                     'justif': justif,
                     'old_note': this.oldnote,
-                    'old_commentaire': this.oldcommentaire
+                    'old_commentaire': this.oldcommentaire,
+                    'etudiant_id': this.etudiantid
                 }
 
                 axios.post(this.url, data).then(

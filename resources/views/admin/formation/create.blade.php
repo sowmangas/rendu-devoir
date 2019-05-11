@@ -23,3 +23,9 @@
         </div>
     </form>
 @stop
+@section('vue')@stop
+
+@section('js')
+    @parent
+
+@stop

@@ -20,14 +20,11 @@ class ModificationNoteController extends Controller
         if ($modificationNote) return response("Même demande déjà en cours merci de patienter l'approbation de l'ADMIN");
 
         $data = array_merge(
-            ['status' => ModificationNoteStatus::Ok], $request->all()
+            ['status' => ModificationNoteStatus::PENDING], $request->all()
         );
 
         ModificationNote::create($data);
 
-        return redirect()->back()->with([
-            'type'    => 'success',
-            'message' => 'Demande de modification de note envoyer avec succès.'
-        ]);
+        return response("Demande transférée avec succes à l'ADMIN");
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\MatiereRequest;
+use App\Matiere;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -30,12 +32,16 @@ class MatiereController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  MatiereRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MatiereRequest $request)
     {
-        //
+        Matiere::create($request->all());
+        return redirect()->back()->with([
+            'type' => 'success',
+            'message' => 'Enregistrement formation reussi'
+        ]);
     }
 
     /**

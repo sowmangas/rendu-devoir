@@ -92,11 +92,12 @@ class RenduController extends Controller
      */
     public function update(RenduFormRequestProf $request, $id)
     {
-        $whereDevoirId = Rendu::whereDevoirId($id);
+        $whereDevoirId = Rendu::whereDevoirId($id)
+            ->whereUserId($request->get('etudiant_id'));
 
         $first = $whereDevoirId->first();
-
-        if ($first != null && assert($first->note))
+      //  dd($first);
+        if ($first != null && $first->note !=null )
             return abort(401, 'action no authority');
 
         $whereDevoirId

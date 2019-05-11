@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
         Route::resource('approb', 'Admin\ApprobationController')->names([
             'create' => 'admin.approb.create',
+            'show' => 'admin.approb.show',
             'store'  => 'admin.approb.store',
             'edit'   => 'admin.approb.edit',
             'update' => 'admin.approb.update',
@@ -44,9 +45,12 @@ Route::group(['middleware' => 'auth'], function () {
             'show'   => 'prof.devoirs.show',
             'update' => 'prof.devoirs.update',
         ]);
+        Route::resource('rendus', 'Prof\RenduController')->names([
+            'update' => 'prof.rendus.update',
+        ]);
         Route::put('devoirs/{id}/putVisible', 'Prof\DevoirController@putVisible')->name('prof.devoirs.putVisible');
 
-        Route::put('rendus/{id}/update', 'Prof\RenduController@update')->name('prof.rendus.update');
+        //Route::put('rendus/{id}/update', 'Prof\RenduController@update')->name('prof.rendus.update');
         Route::post('demande/modification/note', 'Prof\ModificationNoteController@store')->name('prof.modification.note');
         Route::get('devoirsBy/matiere/{name}', 'Prof\DevoirController@devoirByMatiere')->name('prof.devoirs.matiere');
     });

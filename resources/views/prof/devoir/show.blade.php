@@ -68,7 +68,8 @@
                                         :userid="{{ Auth::id() }}"
                                         :renduid="{{ $rendu->id }}"
                                         :oldnote="{{ $rendu->note }}"
-                                        oldcommentaire="{{ $rendu->commentaire }}">
+                                        oldcommentaire="{{ $rendu->commentaire }}"
+                                        :etudiantid="{{$rendu->user_id}}">
                                     </update-note-component>
                                 @endif
                             </td>
@@ -80,3 +81,4 @@
         </div>
     </div>
 @stop
+@section('js')@stop

@@ -19,6 +19,24 @@
                     </select>
                 </div>
 
+                <div class="form-group" data-validate="Champ obligatoire">
+                    <label for="nom_matiere" class="sr-only">Nom de la matiere</label>
+                    <select id="nom_matiere" class="form-control" name="nom_matiere">
+                        <option value="Choisir la matière" disabled selected>Choisir la matière</option>
+                        @foreach($matieres as $matiere)
+                            <option value="{{ $matiere->nom_matiere }}">{{ $matiere->nom_matiere }}</option>
+                        @endforeach
+                    </select>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        </span>
+                    @if ($errors->has('matiere'))
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('matiere') }}</strong>
+                            </span>
+                    @endif
+                </div>
+
                 <div class="form-group">
                     <label for="intitule" class="sr-only">Nom de la formation</label>
                     <input type="text" name="intitule" id="intitule" class="form-control"
@@ -27,15 +45,27 @@
 
                 <div class="form-group">
                     <label for="evaluer" class="form-check-inline">
-                        <input type="checkbox" name="evaluer" id="evaluer" class="form-control"> Evaluer ?
+                        Cocher si dévoir évalué
+                        <input type="checkbox" name="evaluer" id="evaluer" class="form-control -align-left">
                     </label>
+
                 </div>
 
-                <div class="form-group">
-                    <label for="type_correction" class="form-check-inline">
-                        <input type="checkbox" name="type_correction" id="type_correction" class="form-control"> Type de
-                        correction ?
-                    </label>
+                <div class="form-group" data-validate="Champ obligatoire">
+                    <label for="type_correction" class="sr-only">Type de la correction</label>
+                    <select id="type_correction" class="form-control" name="type_correction">
+                        <option value="" disabled selected>Choisir le type de la correction</option>
+                        <option value=1>Corrigé type</option>
+                        <option value=0>Pas de corrigé type</option>
+                    </select>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        </span>
+                    @if ($errors->has('type_correction'))
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('type_correction') }}</strong>
+                        </span>
+                    @endif
                 </div>
 
                 <div class="form-group" id="corrige_input" style="display: none;">
@@ -65,11 +95,7 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="nom_matiere" class="sr-only">Nom de la matiere</label>
-                    <input type="text" name="nom_matiere" id="nom_matiere" class="form-control"
-                           placeholder="Saisissez le nom de la matière" value="{{ old('nom_matiere') }}">
-                </div>
+
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-outline-primary">Sauvegarder</button>
@@ -85,8 +111,15 @@
     @parent
 
     <script>
-        $('#type_correction').click(function () {
-            $('#corrige_input').toggle()
-        })
+
+        $("#type_correction").change(function(){
+            var selectedTypeCorrection = $(this).children("option:selected").val();
+            if (selectedTypeCorrection ==1) {
+                $('#corrige_input').show()
+            }
+            else {
+                $('#corrige_input').hide()
+            }
+        });
     </script>
 @stop

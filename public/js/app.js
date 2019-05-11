@@ -1754,6 +1754,126 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      modificationNotes: []
+    };
+  },
+  props: {
+    url: String
+  },
+  methods: {
+    askApproved: function askApproved() {
+      var appro_id = $(id_appro).text();
+      var rendu_id = $(id_rendu).text();
+      var note = $(notenew).text();
+      var commentaire = $(commentairenew).text();
+      var url = 'admin.approb.update';
+      var status = 'ok'; //if (this.empty(note) || this.empty(commentaire) ) return
+
+      var data = {
+        'status': status,
+        'appro_id': appro_id,
+        'rendu_id': rendu_id,
+        'note': note,
+        'commentaire': commentaire
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(url, data).then(function (response) {
+        return alert(response.data);
+      }, function (error) {
+        return console.error(error);
+      });
+    },
+    askRejected: function askRejected() {
+      var appro_id = $(id_appro).text();
+      var note = $(notenew).text();
+      var commentaire = $(commentairenew).text();
+      var url = 'admin.approb.update';
+      var status = 'rejected'; //if (this.empty(note) || this.empty(commentaire) ) return
+
+      var data = {
+        'status': status,
+        'appro_id': appro_id,
+        'note': note,
+        'commentaire': commentaire
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(url, data).then(function (response) {
+        return alert(response.data);
+      }, function (error) {
+        return console.error(error);
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url).then(function (response) {
+      return _this.modificationNotes = response.data;
+    }, function (error) {
+      return console.log(error);
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -1962,7 +2082,8 @@ __webpack_require__.r(__webpack_exports__);
     userid: Number,
     renduid: Number,
     oldnote: Number,
-    oldcommentaire: String
+    oldcommentaire: String,
+    etudiantid: Number
   },
   methods: {
     askUpdate: function askUpdate() {
@@ -1978,7 +2099,8 @@ __webpack_require__.r(__webpack_exports__);
         'rendu_id': this.renduid,
         'justif': justif,
         'old_note': this.oldnote,
-        'old_commentaire': this.oldcommentaire
+        'old_commentaire': this.oldcommentaire,
+        'etudiant_id': this.etudiantid
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(this.url, data).then(function (response) {
         return alert(response.data);
@@ -37027,6 +37149,144 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=template&id=7b9d7642&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=template&id=7b9d7642&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("table", { staticClass: "table table-sm table-hover" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.modificationNotes, function(modificationNote) {
+              return _c("tr", { staticClass: "text-center" }, [
+                _c("td", { attrs: { id: "id_appro", hidden: "" } }, [
+                  _vm._v(_vm._s(modificationNote.id))
+                ]),
+                _vm._v(" "),
+                _c("td", { attrs: { id: "id_rendu", hidden: "" } }, [
+                  _vm._v(_vm._s(modificationNote.rendu_id))
+                ]),
+                _vm._v(" "),
+                modificationNote.professeur
+                  ? _c("td", [
+                      _vm._v(
+                        " " +
+                          _vm._s(modificationNote.professeur.prenom) +
+                          " " +
+                          _vm._s(modificationNote.professeur.nom)
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                modificationNote.professeur
+                  ? _c("td", [
+                      _vm._v(_vm._s(modificationNote.professeur.titre))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                modificationNote.etudiant
+                  ? _c("td", [
+                      _vm._v(
+                        _vm._s(modificationNote.etudiant.prenom) +
+                          " " +
+                          _vm._s(modificationNote.etudiant.nom)
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(modificationNote.old_note))]),
+                _vm._v(" "),
+                _c("td", { attrs: { id: "notenew" } }, [
+                  _vm._v(_vm._s(modificationNote.note))
+                ]),
+                _vm._v(" "),
+                _c("td", { attrs: { id: "commentairenew" } }, [
+                  _vm._v(_vm._s(modificationNote.commentaire))
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(modificationNote.justif))]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-center" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-outline-primary btn-sm",
+                      attrs: { href: "" },
+                      on: { click: _vm.askApproved }
+                    },
+                    [_vm._v("Approuver")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-outline-danger btn-sm",
+                      attrs: { href: "" },
+                      on: { click: _vm.askRejected }
+                    },
+                    [_vm._v("Rejeter")]
+                  )
+                ])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "text-center" }, [_vm._v("Professeur")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("titre")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Etudiant")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Ancienne Note")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Nouvelle Note")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [
+          _vm._v("Commentaire corrigé")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Justificatif")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center", attrs: { colspan: "2" } }, [
+          _vm._v("Options")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
@@ -49689,6 +49949,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
 Vue.component('register-component', __webpack_require__(/*! ./components/RegisterComponent.vue */ "./resources/js/components/RegisterComponent.vue").default);
+Vue.component('approbation-modif-note-component', __webpack_require__(/*! ./components/ApprobationModifNoteComponent.vue */ "./resources/js/components/ApprobationModifNoteComponent.vue").default);
 Vue.component('update-note-component', __webpack_require__(/*! ./components/UpdateNoteComponent.vue */ "./resources/js/components/UpdateNoteComponent.vue").default);
 var app = new Vue({
   el: '#app'
@@ -49751,6 +50012,75 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/ApprobationModifNoteComponent.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/ApprobationModifNoteComponent.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ApprobationModifNoteComponent_vue_vue_type_template_id_7b9d7642_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ApprobationModifNoteComponent.vue?vue&type=template&id=7b9d7642&scoped=true& */ "./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=template&id=7b9d7642&scoped=true&");
+/* harmony import */ var _ApprobationModifNoteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ApprobationModifNoteComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ApprobationModifNoteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ApprobationModifNoteComponent_vue_vue_type_template_id_7b9d7642_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ApprobationModifNoteComponent_vue_vue_type_template_id_7b9d7642_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "7b9d7642",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ApprobationModifNoteComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ApprobationModifNoteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ApprobationModifNoteComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ApprobationModifNoteComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=template&id=7b9d7642&scoped=true&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=template&id=7b9d7642&scoped=true& ***!
+  \**************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApprobationModifNoteComponent_vue_vue_type_template_id_7b9d7642_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ApprobationModifNoteComponent.vue?vue&type=template&id=7b9d7642&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ApprobationModifNoteComponent.vue?vue&type=template&id=7b9d7642&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApprobationModifNoteComponent_vue_vue_type_template_id_7b9d7642_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApprobationModifNoteComponent_vue_vue_type_template_id_7b9d7642_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

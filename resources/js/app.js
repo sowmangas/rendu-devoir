@@ -6,6 +6,7 @@ window.Vue = require('vue')
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default)
 Vue.component('register-component', require('./components/RegisterComponent.vue').default)
+Vue.component('approbation-modif-note-component', require('./components/ApprobationModifNoteComponent.vue').default)
 Vue.component('update-note-component', require('./components/UpdateNoteComponent.vue').default)
 
 const app = new Vue({

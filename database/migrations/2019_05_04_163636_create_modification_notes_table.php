@@ -24,6 +24,7 @@ class CreateModificationNotesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('rendu_id');
             $table->foreign('rendu_id')->references('id')->on('rendus');
+            $table->unsignedBigInteger('etudiant_id');
             $table->timestamps();
         });
     }

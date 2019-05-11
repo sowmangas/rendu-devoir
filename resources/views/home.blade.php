@@ -17,3 +17,9 @@
         @endforelse
     </div>
 @endsection
+@section('vue')@stop
+
+@section('js')
+    @parent
+
+@stop

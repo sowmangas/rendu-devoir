@@ -15,7 +15,7 @@ class RenduFormRequestProf extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->role === UserRole::PROF;
+        return (Auth::user()->role === UserRole::PROF or Auth::user()->role === UserRole::ADMIN);
     }
 
     /**

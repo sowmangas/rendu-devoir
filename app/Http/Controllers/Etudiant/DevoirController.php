@@ -66,11 +66,16 @@ class DevoirController extends Controller
      */
     public function show($name)
     {
-        $devoirs = Devoir::with('etudiants')->where('nom_matiere', $name)
+        $devoirs = Devoir::with(['etudiants' => function($query) {
+            $query->where('user_id', Auth::user()->id);
+        }])->where('nom_matiere', $name)
             ->where('formation_id', Auth::user()->formation_id)
+            //->where('pivot_user_id', Auth::user()->id)
             ->get()
+            //->where('pivot->user_id', Auth::user()->id)
             ->map(function ($devoir) {
                 foreach ($devoir->etudiants as $etudiant) {
+                    $devoir->etudiant_id=$etudiant->pivot->user_id;
                     $devoir->rendu = str_replace('public', 'storage', $etudiant->pivot->rendu);
                     $devoir->date_depot = $etudiant->pivot->date_depot;
                     $devoir->note = $etudiant->pivot->note;
@@ -78,7 +83,8 @@ class DevoirController extends Controller
                 }
                 return $devoir;
             });
-
+            //->where('etudiant_id', Auth::user()->id);
+           //dd($devoirs);
         return view('etudiant.devoirs.show', compact('devoirs'));
     }
 

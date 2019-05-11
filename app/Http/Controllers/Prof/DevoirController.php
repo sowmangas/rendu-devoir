@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Prof;
 use App\Devoir;
 use App\Formation;
 use App\Http\Requests\DevoirRequest;
+use App\Matiere;
 use App\Rendu;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,7 +33,8 @@ class DevoirController extends Controller
     public function create()
     {
         $formations = Formation::get();
-        return view('prof.devoir.create', compact('formations'));
+        $matieres = Matiere::get();
+        return view('prof.devoir.create', compact('formations'),compact('matieres'));
     }
 
     /**

@@ -34,7 +34,7 @@ class Devoir extends Model
 
     public function etudiants()
     {
-        return $this->belongsToMany(User::class, 'rendus')->withPivot('rendu', 'date_depot', 'note', 'commentaire');
+        return $this->belongsToMany(User::class, 'rendus')->withPivot('user_id','rendu', 'date_depot', 'note', 'commentaire');
     }
 
     public function professeur()

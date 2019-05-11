@@ -17,7 +17,8 @@ class AddStatusFieldTable extends Migration
         Schema::table('modification_notes', function (Blueprint $table) {
             $table->enum('status', [
                 ModificationNoteStatus::PENDING,
-                ModificationNoteStatus::Ok,
+                ModificationNoteStatus::OK,
+                ModificationNoteStatus::REJECTED
             ]);
         });
     }

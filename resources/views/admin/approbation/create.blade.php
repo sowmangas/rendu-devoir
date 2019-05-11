@@ -1,25 +1,47 @@
 @extends('admin.home.index')
 
 @section('homeContent')
-    <h1>Formulaire de création d'une approbation</h1>
-    <form action="{{ route('admin.formations.store') }}" method="post">
-        {{ csrf_field() }}
+    <h1>Formulaire d'approbation</h1>
+    <approbation-modif-note-component url="{{ route('admin.approb.create') }}">
+    </approbation-modif-note-component>
+{{--    <div class="row">--}}
+{{--        <div class="col-md-12">--}}
+{{--            <table class="table table-sm table-hover">--}}
+{{--                <thead>--}}
+{{--                <tr>--}}
+{{--                    <th class="text-center">Intitulé</th>--}}
+{{--                    <th class="text-center">Période</th>--}}
+{{--                    <th class="text-center">Note</th>--}}
+{{--                    <th class="text-center">Commentaires</th>--}}
+{{--                    <th class="text-center">Rendu</th>--}}
+{{--                    <th class="text-center">Date de dépôt</th>--}}
+{{--                    <th class="text-center" colspan="2">Options</th>--}}
+{{--                </tr>--}}
+{{--                </thead>--}}
 
-        <div class="form-group">
-            <label for="nom_formation" class="sr-only">Nom de la formation</label>
-            <input type="text" name="nom_formation" id="nom_formation" class="form-control
-                       {{ $errors->has('nom_formation') ? ' is-invalid' : '' }}"
-                   placeholder="Saisissez le nom de la formation" value="{{ old('nom_formation') }}">
+{{--                <tbody>--}}
+{{--                @foreach ($modificationNotes as $modificationNote)--}}
+{{--                    <form action="{{ route('admin.approb.update', $modificationNote) }}" method="post"--}}
+{{--                          onsubmit="return confirm('Vous êtes sur le point de confirmer une modification de note, \n l\'opération est irreversible.\n Êtes-vous sûr ?')">--}}
+{{--                        @csrf {{ method_field('put') }}--}}
+{{--                        <tr class="text-center">--}}
+{{--                            <td>{{ $modificationNote }}</td>--}}
+{{--                            <td>{{ $modificationNote->periode }}</td>--}}
+{{--                            <td>{{ $modificationNote->periode }}</td>--}}
+{{--                            <--}}
+{{--                            <td class="text-center">--}}
+{{--                                <button type="submit" class="btn btn-outline-primary btn-sm">--}}
+{{--                                    Corriger--}}
+{{--                                </button>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                    </form>--}}
+{{--                @endforeach--}}
+{{--                </tbody>--}}
+{{--            </table>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+@stop
 
-            @if ($errors->has('nom_formation'))
-                <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('nom_formation') }}</strong>
-                        </span>
-            @endif
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-outline-primary">Sauvegarder</button>
-        </div>
-    </form>
+@section('js')
 @stop
