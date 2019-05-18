@@ -11,14 +11,16 @@ class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $order;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($order)
     {
-        //
+        $this->order = $order;
     }
 
     /**
@@ -28,7 +30,8 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->from('example@example.com')
-            ->view('emails.orders.shipped');
+        return
+            $this->from('picardie@demo.com')
+                ->markdown('emails.orders.shipped');
     }
 }
