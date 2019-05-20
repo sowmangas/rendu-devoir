@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Prof;
 
 use App\Devoir;
+use App\Enum\UserRole;
 use App\Formation;
 use App\Http\Requests\DevoirRequest;
+use App\Mail\OrderShipped;
 use App\Matiere;
-use App\Rendu;
+use Illuminate\Support\Facades\Mail;
+use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,19 +43,31 @@ class DevoirController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param DevoirRequest $request
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request)
     {
-        $path = $request->file('enonce')->store("/public/files/".Auth::id());
+        $path = $request->file('enonce')->store("/public/files/" . Auth::id());
         $data = array_merge(
-            $request->only('formation_id', 'intitule', 'evaluer',
+            $request->only(
+                'formation_id', 'intitule', 'evaluer',
                 'type_correction', 'date_limit_depot', 'enonce', 'periode',
-                'nom_matiere'), [ 'enonce' => $path, 'user_id' => Auth::id() ]
+                'nom_matiere'
+            ), [ 'enonce' => $path, 'user_id' => Auth::id() ]
         );
 
-        Devoir::create($data);
+        $devoir = Devoir::create($data);
+
+        $users = User::whereFormationId($request->get('formation_id'))
+            ->whereRole(UserRole::ETUDIANT)
+            ->get();
+
+        if ($users != null) {
+            foreach ($users as $user) {
+                Mail::to($user->adresse_mel)->send(new OrderShipped($devoir, $user));
+            }
+        }
 
         return redirect()->back()->with([
             'type' => 'success',

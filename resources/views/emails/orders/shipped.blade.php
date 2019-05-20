@@ -1,12 +1,10 @@
 @component('mail::message')
-# Introduction
+# Bonjour {{ $user->prenom }} {{ $user->nom }}
 
-The body of your message.
-
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => url('home')])
+Un devoir vient d'être ajouté pour la matière {{ $devoir->nom_matiere }}.
 @endcomponent
 
-Thanks,<br>
+Cordialement!<br>
 {{ config('app.name') }}
 @endcomponent

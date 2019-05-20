@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Prof;
 use App\Devoir;
 use App\Http\Requests\RenduFormRequestEtudiant;
 use App\Http\Requests\RenduFormRequestProf;
+use App\Mail\EtudiantRenduDevoirMail;
+use App\Mail\ProfCorrectionDevoirMail;
 use App\Rendu;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 
 class RenduController extends Controller
@@ -92,20 +96,23 @@ class RenduController extends Controller
      */
     public function update(RenduFormRequestProf $request, $id)
     {
-        $whereDevoirId = Rendu::whereDevoirId($id)
-            ->whereUserId($request->get('etudiant_id'));
+        $etudiantId = $request->get('etudiant_id');
+
+        $whereDevoirId = Rendu::whereDevoirId($id)->whereUserId($etudiantId);
 
         $first = $whereDevoirId->first();
-      //  dd($first);
-        if ($first != null && $first->note !=null )
-            return abort(401, 'action no authority');
 
-        $whereDevoirId
-            ->whereUserId($request->get('etudiant_id'))
-            ->update([
-                'note'        => $request->get('note'),
-                'commentaire' => $request->get('commentaire')
-            ]);
+        if ($first != null && $first->note != null) return abort(401, 'action no authority');
+
+        $rendu = $first;
+        $rendu->note = $request->get('note');
+        $rendu->commentaire = $request->get('commentaire');
+        $rendu->save();
+
+        $rendu->load('devoir');
+
+        Mail::to(User::findOrFail($etudiantId)->adresse_mel)
+            ->send(new ProfCorrectionDevoirMail(User::findOrFail($etudiantId), $rendu));
 
         return redirect()->back()->with([
             'type'    => 'success',

@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Etudiant;
 
 use App\Devoir;
 use App\Http\Requests\RenduFormRequestEtudiant;
+use App\Mail\EtudiantRenduDevoirMail;
+use App\Mail\ProfesseurRenduDevoirMail;
 use App\Rendu;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,7 +46,7 @@ class RenduController extends Controller
     public function store(RenduFormRequestEtudiant $request)
     {
         $path = str_replace(
-            'public','storage',
+            'public', 'storage',
             $request->file('rendu')->store(config('uploads.image'))
         );
 
@@ -51,7 +55,21 @@ class RenduController extends Controller
             ['user_id' => Auth::id(), 'rendu' => $path, 'date_depot' => now()]
         );
 
-        Rendu::create($data);
+
+        $rendu = Rendu::create($data);
+
+        $rendu = $rendu->load('devoir');
+
+        $user = User::whereId($rendu->devoir->user_id)->first();
+
+        if ($user != null) {
+            $email = $user->adresse_mel;
+
+            Mail::to($email)->send(new ProfesseurRenduDevoirMail($rendu, $user));
+        }
+
+        Mail::to(Auth::user()->adresse_mel)->send(new EtudiantRenduDevoirMail($rendu));
+
 
         return redirect()->back()->with([
             'type'    => 'success',

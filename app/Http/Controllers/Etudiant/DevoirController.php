@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Etudiant;
 
 use App\Devoir;
 use App\Formation;
-use App\Http\Requests\DevoirRequest;
-use App\Rendu;
+use App\Mail\EtudiantRenduDevoirMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;

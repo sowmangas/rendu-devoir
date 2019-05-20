@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\Devoir;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,16 +13,19 @@ class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $order;
+    protected $devoir;
+    protected $user;
 
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param Devoir $devoir
+     * @param User $user
      */
-    public function __construct($order)
+    public function __construct(Devoir $devoir, User $user)
     {
-        $this->order = $order;
+        $this->devoir = $devoir;
+        $this->user = $user;
     }
 
     /**
@@ -30,8 +35,9 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return
-            $this->from('picardie@demo.com')
-                ->markdown('emails.orders.shipped');
+        return $this->from('picardie@demo.com')
+            ->markdown('emails.orders.shipped', [
+            'devoir' => $this->devoir, 'user' => $this->user
+        ]);
     }
 }
