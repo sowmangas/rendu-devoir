@@ -3,9 +3,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-Route::get('/send/mail/{orderId}', 'DemoSendMailController@send');
-Route::view('/', 'auth.index');
-Route::view('/', 'welcome')->middleware('auth');
+
+Route::get('/', function () {
+    return redirect('/home');
+});
 Route::view('/auth','auth.index');
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -25,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
         Route::resource('users', 'Admin\UserController')->names([
             'create' => 'admin.users.create',
+            'index' => 'admin.users.index',
             'store'  => 'admin.users.store',
             'edit'   => 'admin.users.edit',
             'update' => 'admin.users.update',

@@ -1,7 +1,10 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url('/home') }}">{{ env('APP_NAME') }}</a>
-
+        @granted(\App\Enum\UserRole::ADMIN)
+            <a class="navbar-brand" href="{{ route('admin.users.index') }}">{{ env('APP_NAME') }}</a>
+        @else
+            <a class="navbar-brand" href="{{ url('/home') }}">{{ env('APP_NAME') }}</a>
+        @endgranted
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
