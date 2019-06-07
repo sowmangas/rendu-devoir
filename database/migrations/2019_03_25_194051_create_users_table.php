@@ -22,9 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('adresse_mel')->unique();
             $table->enum('role', [UserRole::ETUDIANT, UserRole::PROF, UserRole::ADMIN]);
             $table->string('titre')->nullable();
-            $table->enum('status', [StatusUser::ACTIF, StatusUser::INACTIF])->default(StatusUser::ACTIF);
+            $table->enum('status', [StatusUser::LOCKED, StatusUser::UNLOCKED])->default(StatusUser::UNLOCKED);
             $table->enum('firstConnexion', [true, false])->default(true)->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->unsignedBigInteger('formation_id')->nullable();
             $table->foreign('formation_id')->references('id')->on('formations');
             $table->timestamps();

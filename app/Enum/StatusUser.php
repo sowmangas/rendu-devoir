@@ -4,6 +4,6 @@ namespace App\Enum;
 
 abstract class StatusUser
 {
-    const ACTIF = "actif";
-    const INACTIF = "inactif";
+    const LOCKED = "locked";
+    const UNLOCKED = "unlocked";
 }

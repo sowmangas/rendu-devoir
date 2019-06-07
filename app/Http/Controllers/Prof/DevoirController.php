@@ -49,8 +49,7 @@ class DevoirController extends Controller
     public function store(Request $request)
     {
         $path = $request->file('enonce')->store("/public/files/" . Auth::id());
-        $data = array_merge(
-            $request->only(
+        $data = array_merge($request->only(
                 'formation_id', 'intitule', 'evaluer',
                 'type_correction', 'date_limit_depot', 'enonce', 'periode',
                 'nom_matiere'

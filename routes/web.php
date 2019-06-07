@@ -1,13 +1,15 @@
 <?php
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return redirect('/home');
-});
-Route::view('/auth','auth.index');
+Route::get('/', function () { return redirect('/home'); });
+
+Route::view('/welcome', 'welcome');
+
+Route::view('/auth', 'auth.index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -26,14 +28,18 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
         Route::resource('users', 'Admin\UserController')->names([
             'create' => 'admin.users.create',
-            'index' => 'admin.users.index',
+            'index'  => 'admin.users.index',
             'store'  => 'admin.users.store',
             'edit'   => 'admin.users.edit',
             'update' => 'admin.users.update',
         ]);
+
+        Route::put('users/{user}/unlock', 'Admin\UserController@unlock')->name('admin.users.unlock');
+        Route::put('users/{user}/lock', 'Admin\UserController@lock')->name('admin.users.lock');
+
         Route::resource('approb', 'Admin\ApprobationController')->names([
             'create' => 'admin.approb.create',
-            'show' => 'admin.approb.show',
+            'show'   => 'admin.approb.show',
             'store'  => 'admin.approb.store',
             'edit'   => 'admin.approb.edit',
             'update' => 'admin.approb.update',
@@ -54,7 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('devoirs/{id}/putVisible', 'Prof\DevoirController@putVisible')->name('prof.devoirs.putVisible');
 
         //Route::put('rendus/{id}/update', 'Prof\RenduController@update')->name('prof.rendus.update');
-        Route::post('demande/modification/note', 'Prof\ModificationNoteController@store')->name('prof.modification.note');
+        Route::post('demande/modification/note',
+            'Prof\ModificationNoteController@store')->name('prof.modification.note');
         Route::get('devoirsBy/matiere/{name}', 'Prof\DevoirController@devoirByMatiere')->name('prof.devoirs.matiere');
     });
 
@@ -68,7 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::resource('devoirs', 'Etudiant\DevoirController')->names([
             'index' => 'etudiant.devoirs.index',
-            'show'   => 'etudiant.devoirs.show',
+            'show'  => 'etudiant.devoirs.show',
         ]);
     });
 });

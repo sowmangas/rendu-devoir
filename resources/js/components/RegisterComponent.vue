@@ -1,133 +1,129 @@
 <template>
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100 p-t-0 p-b-30">
-                <form class="login100-form validate-form" method="post" @submit.prevent.stop="register">
-                    <span class="login100-form-title p-t-20 p-b-45">Inscrivez-vous</span>
 
-                    <div class="wrap-input100 validate-input m-b-10" data-validate="Champ obligatoire">
-                        <label for="nom"></label>
-                        <input id="nom" class="input100" type="text" name="nom" v-model="nom" placeholder="Nom" autofocus>
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100"></span>
-                    </div>
+    <div class="row">
+        <!-- col -->
+        <div class="col-sm-8">
 
-                    <div class="wrap-input100 validate-input m-b-10" data-validate="Champ obligatoire">
-                        <label for="prenom"></label>
-                        <input id="prenom" class="input100" type="text" name="prenom" v-model="prenom" placeholder="Prénom" autofocus>
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100"></span>
-                    </div>
+            <div class="blok">
+                <header class="blok-heading">
+                    <h3 class="blok-title"> Formulaire de création d'utilisateur </h3>
+                </header>
 
-                    <div class="wrap-input100 validate-input m-b-10" data-validate="Champ obligatoire">
-                        <label for="adresse_mel"></label>
-                        <input id="adresse_mel" class="input100" type="text" name="adresse_mel" v-model="adresse_mel" placeholder="Email" autofocus>
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100"></span>
-                    </div>
+                <article class="article">
 
-                    <div class="wrap-input100 validate-input m-b-10">
-                        <label for="role" class="sr-only"></label>
-                        <select class="input100" id="role" name="role" v-model="role">
-                            <option value="admin">Admin</option>
-                            <option value="prof">Professeur</option>
-                            <option value="etudiant">Etudiant</option>
-                        </select>
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100"></span>
-                    </div>
+                    <form @submit.prevent.stop="register">
 
-                    <div class="wrap-input100 validate-input m-b-10" v-if="role === 'etudiant'">
-                        <label for="formation" class="sr-only"></label>
-                        <select class="input100" id="formation" name="role" v-model="formation_id">
-                            <option :value="formation.id" v-for="formation in formations">
-                                {{ formation.nom_formation }}
-                            </option>
-                        </select>
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100"></span>
-                    </div>
+                        <div class="form-group has-error">
+                            <label for="nom" class="sr-only"></label>
+                            <input id="nom" class="form-control" type="text" name="nom" v-model="nom" placeholder="Nom">
+                        </div>
 
-                    <div class="wrap-input100 validate-input m-b-10" data-validate="Champ obligatoire" v-else v-model="titre">
-                        <label for="title"></label>
-                        <input class="input100" id="title" type="text" name="titre" placeholder="Titre" autofocus>
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100"></span>
-                    </div>
+                        <div class="form-group">
+                            <label for="prenom" class="sr-only"></label>
+                            <input id="prenom" class="form-control" type="text" name="prenom" v-model="prenom"
+                                   placeholder="Prénom">
+                        </div>
 
-                    <div class="wrap-input100 validate-input m-b-10">
-                        <label for="password" class="sr-only"></label>
-                        <input id="password" class="input100" type="password" name="password" placeholder="Mot de pass" v-model="password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100"><i class="fa fa-lock"></i></span>
-                    </div>
+                        <div class="form-group">
+                            <label for="adresse_mel" class="sr-only"></label>
+                            <input id="adresse_mel" class="form-control" type="text" name="adresse_mel"
+                                   v-model="adresse_mel" placeholder="Email">
+                        </div>
 
-                    <div class="wrap-input100 validate-input m-b-10">
-                        <label for="password_confirmation" class="sr-only"></label>
-                        <input id="password_confirmation" class="input100" type="password" name="password_confirmation" placeholder="Confirmez le mot de pass" v-model="password_confirmation">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock"></i>
-                        </span>
+                        <div class="form-group">
+                            <label for="role" class="sr-only"></label>
+                            <select class="form-control" id="role" name="role" v-model="role">
+                                <option value="Admin">Admin</option>
+                                <option value="Professeur">Professeur</option>
+                                <option value="Etudiant">Etudiant</option>
+                            </select>
+                        </div>
 
-                    </div>
+                        <div class="form-group" v-if="role === 'Etudiant'">
+                            <label for="formation" class="sr-only"></label>
+                            <select class="form-control" id="formation" name="role" v-model="formation_id">
+                                <option disabled value="">Veuillez choisir une formation</option>
+                                <option :value="formation.id" v-for="formation in formations">
+                                    {{ formation.nom_formation }}
+                                </option>
+                            </select>
+                        </div>
 
-                    <div class="container-login100-form-btn p-t-10">
-                        <button class="login100-form-btn">Inscription</button>
-                    </div>
+                        <div class="form-group" data-validate="Champ obligatoire" v-else>
+                            <label for="title" class="sr-only"></label>
+                            <input class="form-control" id="title" type="text" v-model="titre" name="titre" placeholder="Titre">
+                        </div>
 
-                </form>
-            </div>
+                        <button class="pull-right btn btn-default">Inscrire</button>
+
+                    </form>
+                </article>
+            </div><!-- blok // -->
+
+        </div><!-- col // -->
+
+        <div class="col-sm-4">
+            <ul v-for="error in errors">
+                <li>{{ error.join('\n') }}</li>
+            </ul>
         </div>
+
     </div>
+
 </template>
 
 <script>
     import axios from 'axios'
 
     export default {
-        data() {
+        data () {
             return {
+                errors: [],
                 formations: [],
-                role: "admin",
-                formation_id: "",
-                nom: "",
-                prenom: "",
-                adresse_mel: "",
-                titre: "",
-                password: "",
-                password_confirmation: ""
+                role: 'Admin',
+                formation_id: '',
+                nom: '',
+                prenom: '',
+                adresse_mel: '',
+                titre: '',
+                password: '',
+                password_confirmation: ''
             }
         },
         props: {
             url: String
         },
         methods: {
-            register() {
+            register () {
                 let options = {
-                    "nom": this.nom,
-                    "prenom": this.prenom,
-                    "adresse_mel": this.adresse_mel,
-                    "titre": this.titre,
-                    "role": this.role,
-                    "formation_id": this.formation_id,
-                    "password": this.password,
-                    "password_confirmation": this.password_confirmation,
-                    // "_token": document.head.querySelector('meta[name="csrf-token"]').content,
+                    'nom': this.nom,
+                    'prenom': this.prenom,
+                    'adresse_mel': this.adresse_mel,
+                    'titre': this.titre,
+                    'role': this.role,
+                    'formation_id': this.formation_id,
+                    '_token': document.head.querySelector('meta[name="csrf-token"]').content
                 }
 
-                axios.post(this.url, options).then(response => {
-                    window.location.href = '/home'
-                }, error => {
-                    console.log(error)
-                })
+                console.log(options)
+
+                axios
+                    .post(this.url, options)
+                    .then(response => console.log(response) )
+                    .catch(error => this.errors = error.response.data.errors )
             },
-            getFormation() {
+            getFormation () {
                 axios.get(this.url).then(response => {
                     this.formations = response.data
                 }, error => {
                     console.log(error)
                 })
+            },
+            isEmpty (string) {
+                return string.length <= 0
+            },
+            isNotEmpty (string) {
+                return !this.isEmpty(string)
             }
         },
         mounted () {

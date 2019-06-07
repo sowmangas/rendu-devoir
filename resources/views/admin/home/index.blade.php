@@ -1,12 +1,13 @@
-@extends('layouts.base', ['title' => "Home"])
+{{--@extends('layouts.base', ['title' => "Home"])--}}
+@extends('layouts.new.base', ['title' => 'Administration'])
 
 @section('content')
     <div class="row">
         <div class="col-md-3">
             <div class="list-group">
-                <a href="{{ route('admin.users.create') }}" class="list-group-item list-group-item-action
-                    {{ setActiveRoot('admin.users.create') }}">
-                    {{ __('Création d\'un utilisateur') }}
+                <a href="{{ route('admin.users.index') }}" class="list-group-item list-group-item-action
+                    {{ setActiveRoot('admin.users.index') }}">
+                    {{ __('Gestion des utilisateurs') }}
                 </a>
 
                 <a href="{{ route('admin.matiere.create') }}" class="list-group-item list-group-item-action

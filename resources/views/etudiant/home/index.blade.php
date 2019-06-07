@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="row">
+        <div class="col-sm-12">
+            <header class="blok-heading">
+                <h3 class="blok-title"> Liste des matières </h3>
+            </header>
+        </div>
+
         @forelse($devoirs as $devoir)
             <div class="col-md-4">
                 <ul class="list-group">
@@ -21,9 +27,9 @@
         @endforelse
     </div>
 @endsection
+
 @section('vue')@stop
 
 @section('js')
     @parent
-
 @stop

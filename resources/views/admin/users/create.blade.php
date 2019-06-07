@@ -4,6 +4,4 @@
     <register-component url="{{ route('register') }}"></register-component>
 @stop
 
-{{--@section('vue')@stop--}}
-
 @section('js')@stop
