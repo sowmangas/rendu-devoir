@@ -16,7 +16,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nom', 'prenom', 'adresse_mel', 'role', 'titre', 'status', 'formation_id', 'password'
+        'nom',
+        'prenom',
+        'adresse_mel',
+        'role',
+        'first_connexion',
+        'titre',
+        'status',
+        'formation_id',
+        'password'
     ];
 
     /**
@@ -25,7 +33,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -35,20 +44,26 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'first_connexion'   => 'boolean'
     ];
 
-    public function formation(){
+    public function formation()
+    {
         return $this->belongsTo(Formation::class);
     }
 
-    public function renduEtudiant(){
+    public function renduEtudiant()
+    {
         return $this->belongsToMany(Devoir::class, 'rendus');
     }
 
-    public function devoirsProfesseur(){
+    public function devoirsProfesseur()
+    {
         return $this->hasMany(Devoir::class);
     }
-    public function professeurs () {
+
+    public function professeurs()
+    {
         return $this->hasMany(ModificationNote::class);
     }
 }

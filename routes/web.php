@@ -12,6 +12,11 @@ Route::view('/welcome', 'welcome');
 Route::view('/auth', 'auth.index');
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['middleware' => 'guest', 'prefix' => 'auth'], function () {
+    Route::get('first_connexion', 'Auth\LoginController@firstConnexion')->name('auth.first_connexion');
+    Route::post('first_connexion', 'Auth\LoginController@check');
+});
+
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::resource('formations', 'Admin\FormationController')->names([
