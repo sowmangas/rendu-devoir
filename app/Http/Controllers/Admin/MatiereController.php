@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\AdminMatiereUpdateFormRequest;
 use App\Http\Requests\MatiereRequest;
 use App\Matiere;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class MatiereController extends Controller
      */
     public function index()
     {
-        //
+        $matieres = Matiere::all();
+        return view('admin.matiere.index', compact("matieres"));
     }
 
     /**
@@ -58,34 +60,44 @@ class MatiereController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Matiere $matiere
+     * @return void
      */
-    public function edit($id)
+    public function edit(Matiere $matiere)
     {
-        //
+        return view('admin.matiere.edit', compact('matiere'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param MatiereRequest $request
+     * @param Matiere $matiere
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MatiereRequest $request, Matiere $matiere)
     {
-        //
+        $matiere->update($request->all());
+
+        return redirect()->route('admin.matiere.index')->with([
+            'message' => 'Modification effectuée avec success',
+            'type'    => 'success'
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Matiere $matiere
+     * @return int
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy( Matiere $matiere)
     {
-        //
+        $matiere->delete();
+        return redirect()->route('admin.matiere.index')->with([
+            'message' => 'Suppression effectuée avec success',
+            'type'    => 'success'
+        ]);
     }
 }

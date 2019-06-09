@@ -26,7 +26,7 @@ class RenduFormRequestEtudiant extends FormRequest
     public function rules()
     {
         return [
-            'rendu'     => 'required|file|mimes:pdf',
+            'rendu'     => 'required|file|mimes:pdf,docx,rar,doc,zip,txt,csv,xls,xlsx',
             'devoir_id' => 'required',
         ];
     }

@@ -34,6 +34,7 @@ class FormationRequest extends FormRequest
     {
         return [
             'nom_formation.required' => 'Le nom de la formation est obligatoire',
+            'nom_formation.unique'   => 'Une autre formation existe déjà sous ce nom',
         ];
     }
 }

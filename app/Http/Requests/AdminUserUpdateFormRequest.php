@@ -32,4 +32,6 @@ class AdminUserUpdateFormRequest extends FormRequest
             'formation_id' => 'required|exists:formations,id',
         ];
     }
+
+
 }

@@ -10,14 +10,14 @@
                     {{ __('Gestion des utilisateurs') }}
                 </a>
 
-                <a href="{{ route('admin.matiere.create') }}" class="list-group-item list-group-item-action
-                    {{ setActiveRoot('admin.matiere.create') }}">
-                    {{ __('Création d\'une matière') }}
+                <a href="{{ route('admin.matiere.index') }}" class="list-group-item list-group-item-action
+                    {{ setActiveRoot('admin.matiere.index') }}">
+                    {{ __('Gestion des matières') }}
                 </a>
 
-                <a href="{{ route('admin.formations.create') }}" class="list-group-item list-group-item-action
-                    {{ setActiveRoot('admin.formations.create') }}">
-                    {{ __('Création d\'une formation') }}
+                <a href="{{ route('admin.formations.index') }}" class="list-group-item list-group-item-action
+                    {{ setActiveRoot('admin.formations.index') }}">
+                    {{ __('Gestion des formations') }}
                 </a>
 
                 <a href="{{ route('admin.approb.create') }}" class="list-group-item list-group-item-action

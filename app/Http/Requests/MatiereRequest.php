@@ -29,4 +29,10 @@ class MatiereRequest extends FormRequest
             'nom_matiere' => 'required|string|unique:matieres'
         ];
     }
+    public function messages()
+    {
+        return [
+            'nom_matiere.unique'   => 'Une autre matière existe déjà sous ce nom',
+        ];
+    }
 }

@@ -13,7 +13,7 @@
                         <a href="https://www.facebook.com/Univ.de.Picardie.JV" class="facebook">
                             <i class="fa fa-facebook"></i>
                         </a>
-                        <a href="https://https://twitter.com/upjv" class="twitter">
+                        <a href="https://twitter.com/upjv" class="twitter">
                             <i class="fa fa-twitter"></i>
                         </a>
                         <a href="https://www.youtube.com/channel/UCcCH6ab3DzjUJTGSxjfeiXQ" class="youtube">

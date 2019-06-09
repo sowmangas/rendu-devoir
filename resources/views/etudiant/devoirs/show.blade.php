@@ -57,7 +57,7 @@
                                     </div>
 
                                     <div class="col-md-6">
-                                        <button type="submit" class="btn btn-outline-primary btn-sm">Soumettre</button>
+                                        <button type="submit" class="btn btn-default btn-sm">Soumettre</button>
                                     </div>
                                 </div>
                             </form>

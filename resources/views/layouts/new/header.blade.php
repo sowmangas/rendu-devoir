@@ -2,14 +2,13 @@
     <section class="wrap-top clearfix">
         <div class="container">
             <ul class="list-inline  mobile-hide list-social">
-                <li><a href="#" class="social-btn-top"> <i class="fa fa-facebook"></i> </a></li>
-                <li><a href="#" class="social-btn-top"> <i class="fa fa-twitter"></i> </a></li>
-                <li><a href="#" class="social-btn-top"> <i class="fa fa-youtube"></i> </a></li>
+                <li><a href="https://www.facebook.com/Univ.de.Picardie.JV" class="social-btn-top"> <i class="fa fa-facebook"></i> </a></li>
+                <li><a href="https://twitter.com/upjv" class="social-btn-top"> <i class="fa fa-twitter"></i> </a></li>
+                <li><a href="https://www.youtube.com/channel/UCcCH6ab3DzjUJTGSxjfeiXQ" class="social-btn-top"> <i class="fa fa-youtube"></i> </a></li>
             </ul>
 
             <ul class="list-inline list-contact">
-                <li><i class="fa fa-phone"></i> &nbsp +224 620 00 00 00</li>
-                <li><i class="fa fa-envelope"></i> &nbsp http://www.rendudevoir-upicardie.com</li>
+                <li><i class="fa fa-sitemap"></i> &nbsp http://www.rendudevoir-upicardie.com</li>
             </ul>
         </div>
     </section>

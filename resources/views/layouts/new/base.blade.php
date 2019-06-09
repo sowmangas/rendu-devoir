@@ -15,7 +15,9 @@
     @show
 
     @section('css')
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/img/favicon.ico') }}">
+{{--        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/img/favicon.ico') }}">--}}
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/icons/tn_favicon.jpg') }}"/>
+
 
         <script src="{{ asset('template/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('template/js/script.js') }}" type="text/javascript"></script>

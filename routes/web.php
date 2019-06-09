@@ -24,12 +24,15 @@ Route::group(['middleware' => 'auth'], function () {
             'store'  => 'admin.formations.store',
             'edit'   => 'admin.formations.edit',
             'update' => 'admin.formations.update',
+            'index'  => 'admin.formations.index',
         ]);
         Route::resource('matiere', 'Admin\MatiereController')->names([
             'create' => 'admin.matiere.create',
             'store'  => 'admin.matiere.store',
             'edit'   => 'admin.matiere.edit',
             'update' => 'admin.matiere.update',
+            'index'  => 'admin.matiere.index',
+            'destroy'=> 'admin.matiere.destroy',
         ]);
         Route::resource('users', 'Admin\UserController')->names([
             'create' => 'admin.users.create',

@@ -29,4 +29,13 @@ class CheckFirstConnexionFormRequest extends FormRequest
             'password'     => 'required|string|min:6|confirmed'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'password_old.required' => 'L\'ancien mot de passe est obligatoire',
+            'password.required'   => 'Le nouveau mot de passe est obligatoire',
+            'password.confirmed'   => 'Vous devez saisir le même mot de pass pour confirmation',
+        ];
+    }
 }

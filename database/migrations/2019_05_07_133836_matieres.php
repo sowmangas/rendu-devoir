@@ -14,6 +14,7 @@ class Matieres extends Migration
     public function up()
     {
         Schema::create('matieres', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('nom_matiere')->unique();
             $table->timestamps();
         });

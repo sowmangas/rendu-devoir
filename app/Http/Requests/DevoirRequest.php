@@ -30,9 +30,9 @@ class DevoirRequest extends FormRequest
             'intitule'         => 'required',
             'evaluer'          => 'required',
             'date_limit_depot' => 'required',
-            'enonce'           => 'required',
+            'enonce'           => 'required|file|mimes:pdf,docx,rar,doc,zip,txt,csv,xls,xlsx',
             'periode'          => 'required',
-            'nom_matiere'      => 'required|min:4',
+            'nom_matiere'      => 'required',
             'type_correction'  => 'required',
         ];
     }
