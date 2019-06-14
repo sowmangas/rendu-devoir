@@ -6,10 +6,14 @@ use App\Enum\StatusUser;
 use App\Enum\UserRole;
 use App\Formation;
 use App\Http\Requests\AdminUserUpdateFormRequest;
+use App\Mail\SenderMailUsersRegisted;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -20,7 +24,31 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('role', '!=', UserRole::ADMIN)->get();
+        $users = User::with('formation')->where('role', '!=', UserRole::ADMIN)->orderBy('id')->paginate(10);
+        return view('admin.users.index', compact("users"));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param String $formation
+     * @return Response
+     */
+    public function list(String $formation)
+    {
+        $users = User::with('formation')->where('formation_id', '=', $formation)->get();
+        return view('admin.users.index', compact("users"));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param String $formation
+     * @return Response
+     */
+    public function scopeSearch(String $formation)
+    {
+        $users = User::with('formation')->where('formation_id', '=', $formation)->get();
         return view('admin.users.index', compact("users"));
     }
 
@@ -81,7 +109,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         return redirect()->route('admin.users.index')->with([
-            'message' => 'Modification effectuer avec success',
+            'message' => 'Modification effectuée avec success',
             'type'    => 'success'
         ]);
     }
@@ -98,7 +126,7 @@ class UserController extends Controller
         $user->update(['status' => StatusUser::UNLOCKED]);
 
         return redirect()->route('admin.users.index')->with([
-            'message' => 'Utilisatueur débloqué avec success',
+            'message' => 'Utilisateur débloqué avec success',
             'type'    => 'success'
         ]);
     }
@@ -115,7 +143,27 @@ class UserController extends Controller
         $user->update(['status' => StatusUser::LOCKED]);
 
         return redirect()->route('admin.users.index')->with([
-            'message' => 'Utilisatueur bloqué avec success',
+            'message' => 'Utilisateur bloqué avec success',
+            'type'    => 'success'
+        ]);
+    }
+
+    /**
+     * Lock the specified resource in storage.
+     *
+     * @param Request $request
+     * @param User $user
+     * @return void
+     */
+    public function reset(Request $request, User $user)
+    {
+        $random = Str::random(15);
+        $user->update(['password'=> $random,'first_connexion'=>'1']);
+
+        Mail::to($user->getAttributeValue('adresse_mel'))->queue(new SenderMailUsersRegisted($random, $user));
+
+        return redirect()->route('admin.users.index')->with([
+            'message' => 'Réinitialisation effectuée avec success',
             'type'    => 'success'
         ]);
     }

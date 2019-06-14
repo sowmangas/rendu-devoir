@@ -5,6 +5,15 @@
         @csrf {{ method_field('put') }}
 
         <div class="form-group">
+            <label for="adresse_mel">Adresse Mèl</label>
+            <input name="adresse_mel" id="adresse_mel" type="text" class="form-control{{ $errors->has('adresse_mel') ? ' is-invalid' : '' }}"
+                   value="{{ $errors->has('adresse_mel') ? old('adresse_mel') : $user->adresse_mel }}">
+            @if ($errors->has('adresse_mel'))
+                <small class="text-danger">{{ $errors->first('adresse_mel') }}</small>
+            @endif
+        </div>
+
+        <div class="form-group">
             <label for="nom">NOM</label>
             <input name="nom" id="nom" type="text" class="form-control{{ $errors->has('nom') ? ' is-invalid' : '' }}"
                    value="{{ $errors->has('nom') ? old('nom') : $user->nom }}">

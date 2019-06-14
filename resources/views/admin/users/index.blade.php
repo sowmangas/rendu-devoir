@@ -8,6 +8,7 @@
             <td class="text-center">Prenom et Nom</td>
             <td class="text-center">Email</td>
             <td class="text-center">Role</td>
+            <td class="text-center">formation</td>
             <td class="text-center">Modification</td>
             <td class="text-center" colspan="2">Actions</td>
         </tr>
@@ -19,6 +20,7 @@
                 <td>{{ $user->prenom }} {{ $user->nom }}</td>
                 <td>{{ $user->adresse_mel }}</td>
                 <td>{{ $user->role }}</td>
+                <td>{{ $user->formation['nom_formation'] }}</td>
                 <td>
                     <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary">
                         <i class="fa fa-edit"></i>
@@ -44,9 +46,18 @@
                             </button>
                         </form>
                     @endif
+
+                    <form method="post" action="{{ route('admin.users.reset', $user) }}">
+                        @csrf {{ method_field('put') }}
+
+                        <button type="submit" class="btn btn-warning" title="Réinitialiser mot de pass de l'utilisateur">
+                            <i class="fa fa-warning"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach
+        {{ $users->links() }}
         </tbody>
     </table>
 @stop

@@ -3,7 +3,7 @@
 
 # Hello {{ $user->prenom }} {{ $user->nom }}
 
-# votre compte a été créer sous les infos:
+# votre compte a été créer sur http://www.rendudevoir-upicardie.com/login sous les infos:
     - Login: {{ $user->adresse_mel }}
     - Password: {{ $random }}
 

@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::put('users/{user}/unlock', 'Admin\UserController@unlock')->name('admin.users.unlock');
         Route::put('users/{user}/lock', 'Admin\UserController@lock')->name('admin.users.lock');
+        Route::put('users/{user}/reset', 'Admin\UserController@reset')->name('admin.users.reset');
+        Route::put('users/{user}/list', 'Admin\UserController@list')->name('admin.users.list');
 
         Route::resource('approb', 'Admin\ApprobationController')->names([
             'create' => 'admin.approb.create',
