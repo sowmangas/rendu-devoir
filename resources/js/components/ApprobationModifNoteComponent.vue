@@ -29,9 +29,11 @@
                             <td id="notenew">{{ modificationNote.note }}</td>
                             <td id="commentairenew" >{{ modificationNote.commentaire }}</td>
                             <td>{{ modificationNote.justif}}</td>
-                            <td class="text-center">
-                                <a href="" @click="askApproved" class="btn btn-outline-primary btn-sm">Approuver</a>
-                                <a href="" @click="askRejected" class="btn btn-outline-danger btn-sm">Rejeter</a>
+                            <td >
+                                <a href="" @click="askApproved" class="btn btn-default btn-sm">Approuver</a>
+                            </td>
+                            <td >
+                                <a href="" @click="askRejected" class="btn btn-danger btn-sm">Rejeter</a>
                             </td>
                         </tr>
 <!--                    </form>-->

@@ -29,34 +29,6 @@ class HomeController extends Controller
         $auth = Auth::user();
         if (isStudent()) {
 
-            //$query1 = DB::table('users')
-                //->fromSub($query1, "users1")
-              //  ->join('devoirs', 'users.formation_id', '=', 'devoirs.formation_id')
-                /*->where('users.id', '=', Auth::id())
-                ->select(DB::raw('nom_matiere, 0 as nombre_rendu, count(*) as nombre_devoir'))
-                ->groupBy('nom_matiere')
-            ;
-
-            $query2 = DB::table('users')
-                ->fromSub($query1, "users1")
-                ->join('rendus', 'users.id', '=', 'rendus.user_id')
-                ->join('devoirs', 'rendus.devoir_id', '=', 'devoirs.id')
-//                ->where('users1.id', '=', Auth::id())
-                ->select(DB::raw('users1.nom_matiere, COUNT(*) as nombre_rendu, 0 as nombre_devoir'))
-                ->groupBy('users1.nom_matiere')
-                ->unionAll($query1)
-//                ->get()
-            ;
-
-            $query3 = DB::table(DB::raw("{$query2->toSql()} as T"))
-                ->fromSub($query2, "users2")
-                //->mergeBindings($query2->getQuery())
-//                ->select(DB::raw('sub.nom_matiere, SUM(sub.nombre_rendu) as nombre_rendu, SUM(sub.nombre_devoir) as nombre_devoir'))
-//                ->groupBy("nom_matiere")
-                ->get();
-
-            dd($query3);
-*/
             $devoirs = DB::select("
             SELECT nom_matiere, SUM(nombre_rendu) as nombre_rendu, SUM(nombre_devoir) as nombre_devoir FROM
             (

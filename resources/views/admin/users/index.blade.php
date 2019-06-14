@@ -2,6 +2,19 @@
 
 @section('homeContent')
     <h6><a href="{{ route('admin.users.create') }}" class="btn btn-primary">Création d'un utilisateur</a></h6>
+
+    <form method="get" action="{{ route('admin.users.search') }}">
+
+        <div class="input-group custom-search-form">
+
+            <input type="text" class="form-control" name="search" id="search" placeholder="Rechercher...">
+            <span class="input-group-btn">
+                <button class="btn btn-default-sm" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </form>
     <table class="table table-sm table-hover">
         <thead>
         <tr>
@@ -46,7 +59,8 @@
                             </button>
                         </form>
                     @endif
-
+                </td>
+                <td>
                     <form method="post" action="{{ route('admin.users.reset', $user) }}">
                         @csrf {{ method_field('put') }}
 

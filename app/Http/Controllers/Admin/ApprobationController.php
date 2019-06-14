@@ -31,13 +31,6 @@ class ApprobationController extends Controller
      */
     public function create(Request $request)
     {
-        //$modificationNotes = User::with(['professeurs'=>function($query){
-        //  $query->whereStatus(ModificationNoteStatus::PENDING);
-        //}
-        //])
-        //    //->whereStatus(ModificationNoteStatus::PENDING)
-        //    ->get();
-
         $modificationNotes = ModificationNote::with('professeur','etudiant')
             ->whereStatus(ModificationNoteStatus::PENDING)
             ->get();

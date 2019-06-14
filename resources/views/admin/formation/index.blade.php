@@ -21,13 +21,9 @@
 
                 </td>
                 <td>
-                    <form action="{{ route('admin.users.list', $formation->id) }}" method="post">
-                        @csrf {{ method_field('put') }}
-                        <div class="form-group">
-                            <button class="btn btn-primary">Afficher</button>
-                        </div>
-
-                    </form>
+                    <a href="{{ route('admin.users.list', $formation->id) }}" class="btn btn-primary" >
+                        Afficher
+                    </a>
                 </td>
                 <td>
                     <a href="{{ route('admin.formations.edit', $formation) }}" class="btn btn-primary">

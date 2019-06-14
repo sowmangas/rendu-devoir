@@ -33,9 +33,12 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{{ $devoir->corrige_type }}" download class="btn btn-link" title="Télécharger le corrigé" {{ !$devoir->visible_corrige_type ? 'hidden' : '' }}>
-                                <i class="fa fa-download"></i>
-                            </a>
+                            @if ($devoir->visible_corrige_type)
+                                <a href="{{ $devoir->corrige_type }}" download class="btn btn-link" title="Télécharger le corrigé">
+                                    <i class="fa fa-download"></i>
+                                </a>
+                            @endif
+
                         </td>
                         <td>
                             @if ($devoir->rendu)

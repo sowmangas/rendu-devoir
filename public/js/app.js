@@ -1809,6 +1809,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -37219,21 +37221,23 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(modificationNote.justif))]),
                 _vm._v(" "),
-                _c("td", { staticClass: "text-center" }, [
+                _c("td", [
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-outline-primary btn-sm",
+                      staticClass: "btn btn-default btn-sm",
                       attrs: { href: "" },
                       on: { click: _vm.askApproved }
                     },
                     [_vm._v("Approuver")]
-                  ),
-                  _vm._v(" "),
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-outline-danger btn-sm",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { href: "" },
                       on: { click: _vm.askRejected }
                     },

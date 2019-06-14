@@ -55,7 +55,7 @@
                             </td>
                             <td class="text-center">{{ $rendu->created_at->format('d/m/Y') }}</td>
                             <td class="text-center">
-                                <button type="submit" class="btn btn-outline-primary btn-sm"
+                                <button type="submit" class="btn btn-default btn-sm"
                                     {{ ($rendu->note && $rendu->commentaire) ? 'disabled' : '' }}>
                                     Corriger
                                 </button>

@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function list(String $formation)
     {
-        $users = User::with('formation')->where('formation_id', '=', $formation)->get();
+        $users = User::with('formation')->where('formation_id', '=', $formation)->paginate(10);
         return view('admin.users.index', compact("users"));
     }
 
@@ -46,9 +46,21 @@ class UserController extends Controller
      * @param String $formation
      * @return Response
      */
-    public function scopeSearch(String $formation)
-    {
-        $users = User::with('formation')->where('formation_id', '=', $formation)->get();
+    public function search(Request $request)
+    {   $search=trim(strtolower($request->search));
+
+        $search=trim(strtolower($search));
+        $users = User::with('formation')
+
+            ->where(function ($query) use ($search){
+                $query->whereRaw('LOWER(`adresse_mel`) LIKE ? ',['%'.trim(strtolower($search)).'%'])
+                      ->orWhereRaw('LOWER(`nom`) LIKE ? ',['%'.trim(strtolower($search)).'%'])
+                      ->orWhereRaw('LOWER(`prenom`) LIKE ? ',['%'.trim(strtolower($search)).'%'])
+                      ->orWhereRaw('LOWER(`role`) LIKE ? ',['%'.trim(strtolower($search)).'%'])
+                      ->get();
+            })
+            ->paginate(10);
+
         return view('admin.users.index', compact("users"));
     }
 
