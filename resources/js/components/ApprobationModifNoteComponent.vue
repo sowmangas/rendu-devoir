@@ -66,7 +66,7 @@
 
                 let url='admin.approb.update'
                 let status='ok'
-                //if (this.empty(note) || this.empty(commentaire) ) return
+                if (this.empty(note) || this.empty(commentaire) ) return
 
                 let data = {
                     'status':      status,

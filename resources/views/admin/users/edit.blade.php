@@ -54,6 +54,11 @@
         <div class="form-group">
             <label for="formation_id">FORMATION</label>
             <select name="formation_id" id="formation_id" class="form-control{{ $errors->has('formation_id') ? ' is-invalid' : '' }}">
+                <option {{ $user->formation_id ? 'selected' : '' }} value="{{ $user->formation_id }}">
+                    @if ($user->formation)
+                        {{ $user->formation->nom_formation }}
+                    @endif
+                </option>
                 @foreach ($formations as $formation)
                     <option {{ $formation->id == $user->formation_id ? 'selected' : '' }} value="{{ $formation->id }}">
                         {{ $formation->nom_formation }}

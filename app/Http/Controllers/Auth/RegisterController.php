@@ -104,6 +104,26 @@ class RegisterController extends Controller
 
         Mail::to($user->adresse_mel)->queue(new SenderMailUsersRegisted($random, $user));
 
-        return Auth::user();
+        return $user;
+    }
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        if($request->ajax())
+            return response('Utilisateur crée avec success');
+
+        return redirect()->route('admin.users.index')->with([
+            'message' => 'Utilisateur crée avec success',
+            'type'    => 'success'
+        ]);
     }
 }

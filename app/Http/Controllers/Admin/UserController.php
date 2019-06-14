@@ -106,6 +106,7 @@ class UserController extends Controller
     {
         $roles = [UserRole::PROF, UserRole::ETUDIANT];
         $formations = Formation::all();
+        $user->load('formation');
         return view('admin.users.edit', compact('user'), ['formations' => $formations, 'roles' => $roles]);
     }
 

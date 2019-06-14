@@ -51,7 +51,8 @@
 
                         <div class="form-group" data-validate="Champ obligatoire" v-else>
                             <label for="title" class="sr-only"></label>
-                            <input class="form-control" id="title" type="text" v-model="titre" name="titre" placeholder="Titre">
+                            <input class="form-control" id="title" type="text" v-model="titre" name="titre"
+                                   placeholder="Titre">
                         </div>
 
                         <button class="pull-right btn btn-default">Inscrire</button>
@@ -105,12 +106,13 @@
                     '_token': document.head.querySelector('meta[name="csrf-token"]').content
                 }
 
-                console.log(options)
-
                 axios
                     .post(this.url, options)
-                    .then(response => console.log(response) )
-                    .catch(error => this.errors = error.response.data.errors )
+                    .then(response => {
+                        alert(response.data)
+                        window.location.reload('/admin/users')
+                    })
+                    .catch(error => this.errors = error.response.data.errors)
             },
             getFormation () {
                 axios.get(this.url).then(response => {
