@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Etudiant;
 
 use App\Devoir;
+use App\Enum\UserRole;
 use App\Formation;
 use App\Mail\EtudiantRenduDevoirMail;
 use Illuminate\Http\Request;
@@ -65,9 +66,17 @@ class DevoirController extends Controller
      */
     public function show($name)
     {
-        $devoirs = Devoir::with(['etudiants' => function($query) {
-            $query->where('user_id', Auth::user()->id);
-        }])->where('nom_matiere', $name)
+        $devoirs = Devoir::with(
+            [
+                'etudiants' => function($query) {
+                    $query->where('user_id', Auth::user()->id);
+                },
+                'professeur' => function($query) {
+                    $query->where('role',UserRole::PROF);
+                },
+            ]
+        )
+            ->where('nom_matiere', $name)
             ->where('formation_id', Auth::user()->formation_id)
             //->where('pivot_user_id', Auth::user()->id)
             ->get()
@@ -83,7 +92,7 @@ class DevoirController extends Controller
                 return $devoir;
             });
             //->where('etudiant_id', Auth::user()->id);
-           //dd($devoirs);
+
         return view('etudiant.devoirs.show', compact('devoirs'));
     }
 

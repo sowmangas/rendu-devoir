@@ -19,4 +19,8 @@ class Rendu extends Model
     {
         return $this->belongsTo(Devoir::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

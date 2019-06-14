@@ -39,7 +39,7 @@ class Devoir extends Model
 
     public function professeur()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     public function rendus() {

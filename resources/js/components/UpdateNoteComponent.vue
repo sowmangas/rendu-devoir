@@ -1,5 +1,5 @@
 <template>
-    <a href="" @click.prevent.stop="askUpdate" class="btn btn-outline-danger btn-sm">Modifier</a>
+    <a href="" @click.prevent.stop="askUpdate" class="btn btn-danger btn-sm">Modifier</a>
 </template>
 
 <script>

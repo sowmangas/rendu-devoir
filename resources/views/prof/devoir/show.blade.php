@@ -18,6 +18,8 @@
                 <table class="table table-sm table-hover">
                     <thead>
                     <tr>
+                        <th class="text-center">Etudiant</th>
+                        <th class="text-center">Adresse mail</th>
                         <th class="text-center">Intitulé</th>
                         <th class="text-center">Période</th>
                         <th class="text-center">Note</th>
@@ -31,6 +33,9 @@
                     <tbody>
                     @foreach ($devoir->rendus as $rendu)
                         <tr class="text-center">
+                            <td>{{ $rendu->user->prenom }} {{ $rendu->user->nom }}</td>
+                            <td>{{ $rendu->user->adresse_mel }}</td>
+                            <td>{{ $devoir->periode }}</td>
                             <td>{{ $devoir->intitule }}</td>
                             <td>{{ $devoir->periode }}</td>
                             <td>

@@ -16,6 +16,7 @@
                     <th class="text-center">Rendu</th>
                     <th class="text-center">Commentaire</th>
                     <th class="text-center">Note</th>
+                    <th class="text-center">Professeur</th>
                 </tr>
                 </thead>
 
@@ -68,6 +69,7 @@
                         </td>
                         <td>{{ $devoir->commentaire }}</td>
                         <td>{{ $devoir->note }}</td>
+                        <td>{{ $devoir->professeur->adresse_mel }}</td>
                     </tr>
                 @empty
                 @endforelse

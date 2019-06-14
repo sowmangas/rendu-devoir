@@ -83,7 +83,7 @@ class DevoirController extends Controller
     public function show($id)
     {
         $devoir = Devoir::whereUserId(Auth::id())
-            ->with('rendus')
+            ->with('rendus.user')
             ->findOrFail($id);
 
         return view('prof.devoir.show', compact('devoir'));
@@ -118,26 +118,7 @@ class DevoirController extends Controller
      */
     public function update(DevoirRequest $request, $id)
     {
-        dd($id);
-//        dd($request->all(), $request->file('corrige_type'));
-//
-//        $path = str_replace('public', 'storage',
-//            $request->file('corrige_type')->store(config('uploads.image'))
-//        );
-//
-//        Devoir::whereId($id)->update(['corrige_type' => $path]);
-//
-//        Rendu::whereDevoirId($id)
-//            ->whereUserId($request->get('etudiant_id'))
-//            ->update([
-//                'note' => $request->get('note'),
-//                'commentaire' => $request->get('commentaire')
-//            ]);
-//
-//        return redirect()->back()->with([
-//            'type'    => 'success',
-//            'message' => 'Correction effectuée avec succèss'
-//        ]);
+
     }
 
     /**
