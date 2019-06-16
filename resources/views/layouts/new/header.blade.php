@@ -8,7 +8,7 @@
             </ul>
 
             <ul class="list-inline list-contact">
-                <li><i class="fa fa-sitemap"></i> &nbsp http://www.rendudevoir-upicardie.com</li>
+                <li><i class="fa fa-sitemap"></i> &nbsp https://www.rendudevoir-upicardie.com</li>
             </ul>
         </div>
     </section>

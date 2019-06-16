@@ -81,6 +81,7 @@ class ApprobationController extends Controller
      */
     public function update(RenduFormRequestProf $request, $id)
     {
+
         if ($request->get('status')==='ok' ) {
             $whereRenduId = Rendu::whereId($request->get('rendu_id'))
                 ->update([

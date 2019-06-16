@@ -28,14 +28,16 @@
                                 {{ $devoir->periode }}
                             </a>
                         </td>
-                        @if ($devoir->type_correction)
-                            <td class="text-center">
-                                <a href="{{ $devoir->corrige_type }}" download class="btn btn-link"
-                                   title="Téléchargé le corrigé type">
-                                    <i class="fa fa-download"></i>
-                                </a>
-                            </td>
-                        @endif
+
+                        <td class="text-center">
+                            @if ($devoir->corrige_type)
+                            <a href="{{ $devoir->corrige_type }}" download class="btn btn-link"
+                               title="Téléchargé le corrigé type">
+                                <i class="fa fa-download"></i>
+                            </a>
+                            @endif
+                        </td>
+
                         <td class="text-center">
                             <a href="{{ route('prof.devoirs.show', $devoir) }}">
                                 {{ $devoir->nom_matiere }}

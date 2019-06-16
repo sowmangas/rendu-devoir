@@ -55,7 +55,8 @@
             }
         },
         props: {
-            url: String
+            url: String,
+            csrf: String,
         },
         methods: {
             askApproved () {
@@ -66,14 +67,15 @@
 
                 let url='admin.approb.update'
                 let status='ok'
-                if (this.empty(note) || this.empty(commentaire) ) return
+                //if (this.empty(note) || this.empty(commentaire) ) return
 
                 let data = {
                     'status':      status,
                     'appro_id':    appro_id,
                     'rendu_id':    rendu_id,
                     'note':        note,
-                    'commentaire': commentaire
+                    'commentaire': commentaire,
+                    '_csrf': this.csrf,
                 }
 
                 axios.put(url, data).then(
@@ -93,7 +95,8 @@
                     'status':      status,
                     'appro_id':    appro_id,
                     'note':        note,
-                    'commentaire': commentaire
+                    'commentaire': commentaire,
+                    '_csrf': this.csrf,
                 }
 
                 axios.put(url, data).then(

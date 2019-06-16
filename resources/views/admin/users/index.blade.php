@@ -65,7 +65,7 @@
                         @csrf {{ method_field('put') }}
 
                         <button type="submit" class="btn btn-warning" title="Réinitialiser mot de pass de l'utilisateur">
-                            <i class="fa fa-warning"></i>
+                            <i class="fa fa-undo"></i>
                         </button>
                     </form>
                 </td>

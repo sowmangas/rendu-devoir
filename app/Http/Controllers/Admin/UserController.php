@@ -171,7 +171,7 @@ class UserController extends Controller
     public function reset(Request $request, User $user)
     {
         $random = Str::random(15);
-        $user->update(['password'=> $random,'first_connexion'=>'1']);
+        $user->update(['password'=>bcrypt( $random),'first_connexion'=>'1']);
 
         Mail::to($user->getAttributeValue('adresse_mel'))->queue(new SenderMailUsersRegisted($random, $user));
 

@@ -35,7 +35,6 @@
                         <tr class="text-center">
                             <td>{{ $rendu->user->prenom }} {{ $rendu->user->nom }}</td>
                             <td>{{ $rendu->user->adresse_mel }}</td>
-                            <td>{{ $devoir->periode }}</td>
                             <td>{{ $devoir->intitule }}</td>
                             <td>{{ $devoir->periode }}</td>
                             <td>

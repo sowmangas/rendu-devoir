@@ -69,7 +69,7 @@
                         </td>
                         <td>{{ $devoir->commentaire }}</td>
                         <td>{{ $devoir->note }}</td>
-                        <td>{{ $devoir->professeur->adresse_mel }}</td>
+                        <td>@if ($devoir->professeur) {{ $devoir->professeur->adresse_mel }} @endif </td>
                     </tr>
                 @empty
                 @endforelse
